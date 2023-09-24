@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+  nginx:
+    image: nginx:latest
+    ports:
+      - "49003:80"
+    volumes:
+      - .:/var/www/v3.api.aftaa.ru
+      - ./docker/nginx/hosts:/etc/nginx/conf.d
+      - ./docker/nginx/logs:/var/log/nginx
+    restart: always
+    links:
+      - php
+
+  php:
+    build: docker/php
+    volumes:
+      - .:/var/www/v3.api.aftaa.ru
+    restart: always
+    links:
+      - mysql
+
+  mysql:
+    image: mysql:8.0.34
+    ports:
+      - "49004:3306"
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    restart: always
