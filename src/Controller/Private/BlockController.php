@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/private/')]
 class BlockController extends AbstractController
 {
-    #[Route('blocks', name: 'app_private_blocks')]
+    #[Route('blocks', name: 'app_private_blocks', methods: ['POST'])]
     public function blocks(BlockRepository $blockRepository): JsonResponse
     {
         return $this->json([
