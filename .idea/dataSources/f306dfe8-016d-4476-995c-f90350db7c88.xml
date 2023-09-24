@@ -926,8 +926,8 @@ a|schema||a||UPDATE|G</Grants>
     </collation>
     <schema id="288" parent="1" name="a">
       <Current>1</Current>
-      <IntrospectionTimestamp>2023-09-24.17:31:00</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-09-24.14:31:00</LocalIntrospectionTimestamp>
+      <IntrospectionTimestamp>2023-09-24.17:58:38</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-09-24.14:58:38</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="289" parent="1" name="information_schema">
