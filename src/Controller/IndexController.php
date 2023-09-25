@@ -9,7 +9,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class IndexController extends AbstractController
 {
-    #[Route('/public/index')]
+    #[Route('/private/index')]
     public function index(DataService $dataService): JsonResponse
     {
         return $this->json([
