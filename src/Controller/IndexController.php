@@ -2,17 +2,18 @@
 
 namespace App\Controller;
 
+use App\Service\DataService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
-class TestController extends AbstractController
+class IndexController extends AbstractController
 {
-    #[Route('/private/test', name: 'app_private_test', methods: ['GET'])]
-    public function test(): JsonResponse
+    #[Route('/public/index')]
+    public function index(DataService $dataService): JsonResponse
     {
         return $this->json([
-            'user' => $this->getUser()?->getUserIdentifier(),
+            'data' => $dataService->getData(),
         ]);
     }
 }
