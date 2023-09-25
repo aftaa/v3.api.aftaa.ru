@@ -5,20 +5,22 @@ namespace App\Service;
 use App\Entity\Block;
 use App\Repository\BlockRepository;
 use App\Repository\LinkRepository;
-use function Sodium\compare;
 
-class DataService
+readonly class DataService
 {
     public function __construct(
         private BlockRepository $blockRepository,
-        private LinkRepository  $linkRepository,
     )
     {
     }
 
-    public function getData(bool $top = true)
+    /**
+     * @param bool $top
+     * @return array
+     */
+    public function getData(bool $top = true): array
     {
-        $data = [];
+        $columns = [];
         $blocks = $this->blockRepository->findBlocks();
 
         /** @var Block $block */
@@ -29,7 +31,7 @@ class DataService
             }
 
             $links = $block->getLinks();
-            $dataLinks = [];
+            $data = [];
             foreach ($links as $link) {
 
                 if ($link->isDeleted()) {
@@ -42,10 +44,10 @@ class DataService
                     'href' => $link->getHref(),
                     'icon' => $link->getIcon(),
                 ];
-                $dataLinks[$link['id']] = $link;
+                $data[$link['id']] = $link;
             }
 
-            usort($dataLinks, function (array $link1, array $link2): int {
+            usort($data, function (array $link1, array $link2): int {
                 return strcmp($link1['name'], $link2['name']);
             });
 
@@ -53,12 +55,11 @@ class DataService
                 'id' => $block->getId(),
                 'name' => $block->getName(),
                 'col' => $block->getCol(),
-                'links' => $dataLinks,
+                'links' => $data,
             ];
-            $data[$block['id']] = $block;
+            $columns[$block['col']][$block['id']] = $block;
         }
-        $data['data'] = $data;
-
-        return $data;
+        $columns['data'] = $columns;
+        return $columns;
     }
 }
