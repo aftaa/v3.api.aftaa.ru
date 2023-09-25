@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TestController extends AbstractController
 {
-    #[Route('/private/test', name: 'app_private_test')]
+    #[Route('/private/test', name: 'app_private_test', methods: ['GET'])]
     public function test(): JsonResponse
     {
         return $this->json([
