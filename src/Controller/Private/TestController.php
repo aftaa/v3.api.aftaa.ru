@@ -12,7 +12,7 @@ class TestController extends AbstractController
     public function test(): JsonResponse
     {
         return $this->json([
-            'user' => $this->getUser()?->getUserIdentifier();
+            'user' => $this->getUser()?->getUserIdentifier(),
         ]);
     }
 }
