@@ -6,9 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="6afbe0a1-980b-4a51-830a-7ba97c77cea2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/LinkRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/LinkRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ViewRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ViewRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Service/DataService.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/DataService.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
