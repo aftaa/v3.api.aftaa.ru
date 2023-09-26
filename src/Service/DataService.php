@@ -46,7 +46,7 @@ readonly class DataService
                 }
 
                 $icon = $link->getIcon();
-                $icon = str_replace('https://v2.api.aftaa.ru', 'http://v3.api.aftaa', $icon);
+                $icon = str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $icon);
 
                 $link = [
                     'id' => $link->getId(),
