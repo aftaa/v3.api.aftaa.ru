@@ -21,11 +21,13 @@ class BlockRepository extends ServiceEntityRepository
         parent::__construct($registry, Block::class);
     }
 
-    public function findBlocks()
+    public function findBlocks(bool $deleted = false)
     {
         $qb = $this->createQueryBuilder('b')
             ->addOrderBy('b.sort');
-        $qb->where('b.deleted=FALSE');
+        if (!$deleted) {
+            $qb->where('b.deleted=FALSE');
+        }
         return $qb->getQuery()->getResult();
     }
 

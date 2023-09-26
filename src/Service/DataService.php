@@ -10,30 +10,48 @@ readonly class DataService
 {
     public function __construct(
         private BlockRepository $blockRepository,
-        private ViewRepository $viewRepository,
+        private ViewRepository  $viewRepository,
     )
     {
     }
 
     /**
-     * @param bool $top
      * @return array
      */
-    public function getData(bool $displayTop = true): array
+    public function getIndexData(): array
     {
-        $columns = [];
         $blocks = $this->blockRepository->findBlocks();
-        if ($displayTop) {
-            $top = $this->viewRepository->findTop(23);
-            foreach ($top as &$row) {
-                $row['icon'] = str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $row['icon']);
-            }
+        $top = $this->viewRepository->findTop(23);
+        foreach ($top as &$row) {
+            $row['icon'] = $this->replaceIconHref($row['icon']);
         }
 
-        /** @var Block $block */
+        $columns = $this->processColumns(blocks: $blocks, skipEmptyBlocks: true);
+        $data['columns'] = $columns;
+        $data['top'] = $top;
+        return $data;
+    }
+
+    public function getAdminData(): array
+    {
+        $blocks = $this->blockRepository->findBlocks();
+        $trash = $this->blockRepository->findBlocks(true);
+        $columns = $this->processColumns($blocks, skipEmptyBlocks: true);
+        $trash = $this->processColumns($trash, skipEmptyBlocks: false);
+        return compact('columns', 'trash');
+    }
+
+    /**
+     * @param array $blocks
+     * @param bool $skipEmptyBlocks
+     * @return array
+     */
+    private function processColumns(array $blocks, bool $skipEmptyBlocks): array
+    {
+        $columns = [];
         foreach ($blocks as $block) {
 
-            if (!count($block->getLinks())) {
+            if (!count($block->getLinks()) && $skipEmptyBlocks) {
                 continue;
             }
 
@@ -46,7 +64,7 @@ readonly class DataService
                 }
 
                 $icon = $link->getIcon();
-                $icon = str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $icon);
+                $icon = $this->replaceIconHref($icon);
 
                 $link = [
                     'id' => $link->getId(),
@@ -69,10 +87,15 @@ readonly class DataService
             ];
             $columns[$block['col']][$block['id']] = $block;
         }
-        $columns['columns'] = $columns;
-        if ($displayTop) {
-            $columns['top'] = $top;
-        }
         return $columns;
+    }
+
+    /**
+     * @param mixed $icon
+     * @return array|mixed|string|string[]
+     */
+    private function replaceIconHref(mixed $icon): mixed
+    {
+        return str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $icon);
     }
 }
