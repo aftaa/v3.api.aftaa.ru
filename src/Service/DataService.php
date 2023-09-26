@@ -4,12 +4,13 @@ namespace App\Service;
 
 use App\Entity\Block;
 use App\Repository\BlockRepository;
-use App\Repository\LinkRepository;
+use App\Repository\ViewRepository;
 
 readonly class DataService
 {
     public function __construct(
         private BlockRepository $blockRepository,
+        private ViewRepository $viewRepository,
     )
     {
     }
@@ -18,10 +19,16 @@ readonly class DataService
      * @param bool $top
      * @return array
      */
-    public function getData(bool $top = true): array
+    public function getData(bool $displayTop = true): array
     {
         $columns = [];
         $blocks = $this->blockRepository->findBlocks();
+        if ($displayTop) {
+            $top = $this->viewRepository->findTop(23);
+            foreach ($top as &$row) {
+                $row['icon'] = str_replace('https://v2.api.aftaa.ru', 'http://v3.api.aftaa', $row['icon']);
+            }
+        }
 
         /** @var Block $block */
         foreach ($blocks as $block) {
@@ -38,11 +45,14 @@ readonly class DataService
                     continue;
                 }
 
+                $icon = $link->getIcon();
+                $icon = str_replace('https://v2.api.aftaa.ru', 'http://v3.api.aftaa', $icon);
+
                 $link = [
                     'id' => $link->getId(),
                     'name' => $link->getName(),
                     'href' => $link->getHref(),
-                    'icon' => $link->getIcon(),
+                    'icon' => $icon,
                 ];
                 $data[$link['id']] = $link;
             }
@@ -59,7 +69,10 @@ readonly class DataService
             ];
             $columns[$block['col']][$block['id']] = $block;
         }
-        $columns['data'] = $columns;
+        $columns['columns'] = $columns;
+        if ($displayTop) {
+            $columns['top'] = $top;
+        }
         return $columns;
     }
 }

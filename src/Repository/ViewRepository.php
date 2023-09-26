@@ -2,6 +2,7 @@
 
 namespace App\Repository;
 
+use App\Entity\Link;
 use App\Entity\View;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
@@ -19,6 +20,36 @@ class ViewRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, View::class);
+    }
+
+    public function save(View $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(View $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function findTop(int $limit = 42): array
+    {
+            $qb = $this->createQueryBuilder('v')
+                ->innerJoin(Link::class, 'l', 'WITH', 'v.link=l')
+                ->select('COUNT(v) AS count')
+                ->addSelect('l.name, l.icon, l.href, l.id')
+                ->setMaxResults($limit)
+                ->orderBy('COUNT(v)', 'DESC')
+                ->groupBy('l.id');
+            return $qb->getQuery()->execute();
     }
 
 //    /**
