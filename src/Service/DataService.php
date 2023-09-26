@@ -26,7 +26,7 @@ readonly class DataService
         if ($displayTop) {
             $top = $this->viewRepository->findTop(23);
             foreach ($top as &$row) {
-                $row['icon'] = str_replace('https://v2.api.aftaa.ru', 'http://v3.api.aftaa', $row['icon']);
+                $row['icon'] = str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $row['icon']);
             }
         }
 
