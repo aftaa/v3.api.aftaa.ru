@@ -21,6 +21,24 @@ class BlockRepository extends ServiceEntityRepository
         parent::__construct($registry, Block::class);
     }
 
+    public function save(Block $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    public function remove(Block $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
     public function findBlocks(bool $deleted = false)
     {
         $qb = $this->createQueryBuilder('b')
@@ -30,29 +48,4 @@ class BlockRepository extends ServiceEntityRepository
         }
         return $qb->getQuery()->getResult();
     }
-
-//    /**
-//     * @return Block[] Returns an array of Block objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('b.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Block
-//    {
-//        return $this->createQueryBuilder('b')
-//            ->andWhere('b.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
 }
