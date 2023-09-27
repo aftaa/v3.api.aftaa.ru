@@ -52,6 +52,21 @@ class ViewRepository extends ServiceEntityRepository
             return $qb->getQuery()->execute();
     }
 
+    public function getViews()
+    {
+        $qb = $this->createQueryBuilder('v')
+            ->innerJoin(Link::class, 'l', 'WITH', 'v.link=l')
+            ->select('COUNT(v) AS count')
+            ->addSelect('l.id')
+            ->groupBy('l.id');
+        $rows = $qb->getQuery()->execute();
+        $views = [];
+        foreach ($rows as $row) {
+            $views[$row['id']] = $row['count'];
+        }
+        return $views;
+    }
+
 //    /**
 //     * @return View[] Returns an array of View objects
 //     */

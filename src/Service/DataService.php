@@ -39,7 +39,8 @@ readonly class DataService
         $trash = $this->blockRepository->findBlocks(true);
         $columns = $this->processColumns($blocks, skipEmptyBlocks: true);
         $trash = $this->processColumns($trash, skipEmptyBlocks: false);
-        return compact('columns', 'trash');
+        $views = $this->viewRepository->getViews();
+        return compact('columns', 'trash', 'views');
     }
 
     /**
