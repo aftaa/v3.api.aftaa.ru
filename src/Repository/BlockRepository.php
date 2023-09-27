@@ -42,7 +42,8 @@ class BlockRepository extends ServiceEntityRepository
     public function findBlocks(bool $deleted = false)
     {
         $qb = $this->createQueryBuilder('b')
-            ->addOrderBy('b.sort');
+            ->addOrderBy('b.sort')
+        ;
         if (!$deleted) {
             $qb->where('b.deleted=FALSE');
         }

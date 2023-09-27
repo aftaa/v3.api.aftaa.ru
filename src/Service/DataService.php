@@ -93,7 +93,7 @@ readonly class DataService
                 'private' => $block->isPrivate(),
                 'links' => $data,
             ];
-            $columns[$block['col']][$block['id']] = $block;
+            $columns[$block['col']][] = $block;
         }
         return $columns;
     }
