@@ -26,8 +26,10 @@ class DataController extends AbstractController
     #[Route('/public/data/index')]
     public function publicIndex(DataService $dataService): JsonResponse
     {
+        $indexData = $dataService->getIndexData();
+        dump($indexData);
         return $this->json([
-            $dataService->getIndexData(),
+            $indexData,
         ]);
     }
     #[Route('/public/data/admin')]
