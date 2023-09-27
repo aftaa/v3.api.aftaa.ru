@@ -3,6 +3,7 @@
 namespace App\Service;
 
 use App\Entity\Block;
+use App\Entity\Link;
 use App\Repository\BlockRepository;
 use App\Repository\ViewRepository;
 
@@ -66,10 +67,12 @@ readonly class DataService
                 $icon = $link->getIcon();
                 $icon = $this->replaceIconHref($icon);
 
+                /** @var Link $link */
                 $link = [
                     'id' => $link->getId(),
                     'name' => $link->getName(),
                     'href' => $link->getHref(),
+                    'private' => $link->isPrivate(),
                     'icon' => $icon,
                 ];
                 $data[$link['id']] = $link;
@@ -79,10 +82,12 @@ readonly class DataService
                 return strcmp($link1['name'], $link2['name']);
             });
 
+            /** @var Block $block */
             $block = [
                 'id' => $block->getId(),
                 'name' => $block->getName(),
                 'col' => $block->getCol(),
+                'private' => $block->isPrivate(),
                 'links' => $data,
             ];
             $columns[$block['col']][$block['id']] = $block;
