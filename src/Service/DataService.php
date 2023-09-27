@@ -26,7 +26,7 @@ readonly class DataService
         $top = [];
         foreach ($rows as &$row) {
             $row['icon'] = $this->replaceIconHref($row['icon']);
-            $top[$row['id']] = $row;
+            $top['s' . $row['id']] = $row;
         }
 
         $columns = $this->processColumns(blocks: $blocks, skipEmptyBlocks: true);
