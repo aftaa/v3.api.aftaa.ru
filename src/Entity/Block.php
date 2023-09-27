@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ApiResource]
 #[ORM\Entity(repositoryClass: BlockRepository::class)]
@@ -16,21 +17,27 @@ class Block
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups('api')]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Groups('api')]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Groups('api')]
     private ?int $col = null;
 
     #[ORM\Column]
+    #[Groups('api')]
     private ?int $sort = null;
 
     #[ORM\Column]
+    #[Groups('api')]
     private ?bool $private = null;
 
     #[ORM\Column]
+    #[Groups('api')]
     private ?bool $deleted = null;
 
     #[ORM\OneToMany(mappedBy: 'block', targetEntity: Link::class)]
