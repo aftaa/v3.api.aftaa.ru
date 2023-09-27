@@ -2,9 +2,12 @@
 
 namespace App\Repository;
 
+use App\Entity\Block;
 use App\Entity\Link;
 use App\Entity\View;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -44,9 +47,12 @@ class ViewRepository extends ServiceEntityRepository
     {
             $qb = $this->createQueryBuilder('v')
                 ->innerJoin(Link::class, 'l', 'WITH', 'v.link=l')
+                ->innerJoin(Block::class, 'b', 'WITH', 'l.block=b')
                 ->select('COUNT(v) AS count')
                 ->addSelect('l.name, l.icon, l.href, l.id')
                 ->setMaxResults($limit)
+                ->where('l.deleted=FALSE')
+                ->andWhere('b.deleted=FALSE')
                 ->orderBy('COUNT(v)', 'DESC')
                 ->groupBy('l.id');
             return $qb->getQuery()->execute();
@@ -91,4 +97,16 @@ class ViewRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    /**
+     * @throws NonUniqueResultException
+     * @throws NoResultException
+     */
+    public function findViews(?int $linkId): int
+    {
+        return $this->createQueryBuilder('v')
+            ->select('COUNT(v)')
+            ->where('v.link=:linkId')
+            ->setParameter('linkId', $linkId)
+            ->getQuery()->getSingleScalarResult();
+    }
 }

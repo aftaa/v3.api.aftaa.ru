@@ -5,22 +5,35 @@ namespace App\Controller;
 use App\Entity\Link;
 use App\Entity\View;
 use App\Repository\ViewRepository;
+use Doctrine\ORM\NonUniqueResultException;
+use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class LinkController extends AbstractController
 {
+    /**
+     * @param Link $link
+     * @param ViewRepository $viewRepository
+     * @param Request $request
+     * @return JsonResponse
+     * @throws NoResultException
+     * @throws NonUniqueResultException
+     */
     #[Route('/private/link/view/{id}')]
-    public function index(Link $link, ViewRepository $viewRepository, Request $request): Response
+    public function index(Link $link, ViewRepository $viewRepository, Request $request): JsonResponse
     {
         $view = new View();
         $view->setDateTime(new \DateTime('now'));
         $view->setIp4(ip2long($request->server->get('REMOTE_ADDR')));
         $view->setLink($link);
         $viewRepository->save($view, true);
-        return new Response('');
+
+        $views = $viewRepository->findViews($link->getId());
+        return $this->json([
+            'views' => $views,
+        ]);
     }
 }
