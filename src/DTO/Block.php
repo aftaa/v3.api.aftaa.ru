@@ -2,7 +2,7 @@
 
 namespace App\DTO;
 
-class BlockDTO
+class Block
 {
     use ModifyEntityTrait;
 
