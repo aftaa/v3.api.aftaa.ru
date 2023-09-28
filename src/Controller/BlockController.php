@@ -2,13 +2,11 @@
 
 namespace App\Controller;
 
-use App\DTO\BlockDTO;
+use App\DTO as DTO;
 use App\Entity\Block;
 use App\Repository\BlockRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
@@ -33,7 +31,7 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/{id}', methods: ['PUT'])]
-    public function put(Block $block, #[MapRequestPayload] BlockDTO $dto, BlockRepository $blockRepository): JsonResponse
+    public function put(Block $block, #[MapRequestPayload] DTO\Block $dto, BlockRepository $blockRepository): JsonResponse
     {
         $dto->modifyEntity($block);
         $blockRepository->save($block, true);
@@ -41,7 +39,7 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/', methods: ['POST'])]
-    public function post(#[MapRequestPayload] BlockDTO $dto, BlockRepository $blockRepository): JsonResponse
+    public function post(#[MapRequestPayload] DTO\Block $dto, BlockRepository $blockRepository): JsonResponse
     {
         $block = new Block();
         $dto->modifyEntity($block);
