@@ -39,7 +39,11 @@ class BlockRepository extends ServiceEntityRepository
         }
     }
 
-    public function findBlocks(bool $deleted = false)
+    /**
+     * @param bool $deleted
+     * @return Block[]
+     */
+    public function findBlocks(bool $deleted = false): array
     {
         $qb = $this->createQueryBuilder('b')
             ->addOrderBy('b.sort');
@@ -49,5 +53,16 @@ class BlockRepository extends ServiceEntityRepository
             $qb->where('b.deleted=FALSE');
         }
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return Block[]
+     */
+    public function findCollection(): array
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->where('b.deleted=FALSE')
+            ->orderBy('b.name');
+        return $qb->getQuery()->execute();
     }
 }

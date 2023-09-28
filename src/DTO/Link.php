@@ -2,14 +2,15 @@
 
 namespace App\DTO;
 
-readonly class Block
+readonly class Link
 {
     use ModifyEntityTrait;
 
     public function __construct(
+        public int $block_id,
         public string $name,
-        public int $col,
-        public int $sort,
+        public string $href,
+        public string $icon,
         public bool $private,
     )
     {

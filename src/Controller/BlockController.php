@@ -24,6 +24,13 @@ class BlockController extends AbstractController
         $this->context = (new ObjectNormalizerContextBuilder())->withGroups('api')->toArray();
     }
 
+    #[Route('block/', methods: ['GET'])]
+    public function getAll(BlockRepository $blockRepository): JsonResponse
+    {
+        $blocks = $blockRepository->findCollection();
+        return $this->json($this->serializer->normalize($blocks, null, $this->context));
+    }
+
     #[Route('block/{id}', methods: ['GET'])]
     public function get(Block $block): JsonResponse
     {
