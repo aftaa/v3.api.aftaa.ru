@@ -79,7 +79,11 @@ class BlockRepository extends ServiceEntityRepository
                         'id' => $link->getId(),
                         'name' => $link->getName(),
                         'href' => $link->getHref(),
-                        'icon' => str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $link->getIcon()),
+                        'icon' => str_replace(
+                            'https://v2.api.aftaa.ru',
+                            'https://v3.api.aftaa.ru',
+                            $link->getIcon(),
+                        ),
                         'private' => $link->isPrivate(),
                     ];
                 }
@@ -87,8 +91,8 @@ class BlockRepository extends ServiceEntityRepository
             $result[$block->getCol()][$block->getId()] = $resultBlock;
         }
 
-        foreach ($result as $col => $blocks) {
-            foreach ($blocks as $blockId => $block) {
+        foreach ($result as $col => &$blocks) {
+            foreach ($blocks as $blockId => &$block) {
                 if ($block['deleted'] || count($block['links']) > 0) {
                     usort($block['links'], function (array $link1, array $link2): int {
                         return strcmp($link1['name'], $link2['name']);
