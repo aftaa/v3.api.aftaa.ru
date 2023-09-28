@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Block;
+use App\Entity\Link;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -53,6 +54,51 @@ class BlockRepository extends ServiceEntityRepository
             $qb->where('b.deleted=FALSE');
         }
         return $qb->getQuery()->getResult();
+    }
+
+    public function findATrash(): array
+    {
+        /** @var Block[] $blocks */
+        $blocks = $this->createQueryBuilder('b')
+            ->orderBy('b.sort')
+            ->getQuery()->execute();
+        $result = [];
+        foreach ($blocks as $block) {
+            $resultBlock = [
+                'id' => $block->getId(),
+                'name' => $block->getName(),
+                'col' => $block->getCol(),
+                'sort' => $block->getSort(),
+                'deleted' => $block->isDeleted(),
+                'private' => $block->isPrivate(),
+                'links' => [],
+            ];
+            foreach ($block->getLinks() as $link) {
+                if ($link->isDeleted()) {
+                    $resultBlock['links'][$link->getId()] = [
+                        'id' => $link->getId(),
+                        'name' => $link->getName(),
+                        'href' => $link->getHref(),
+                        'icon' => str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $link->getIcon()),
+                        'private' => $link->isPrivate(),
+                    ];
+                }
+            }
+            $result[$block->getCol()][$block->getId()] = $resultBlock;
+        }
+
+        foreach ($result as $col => $blocks) {
+            foreach ($blocks as $blockId => $block) {
+                if ($block['deleted'] || count($block['links']) > 0) {
+                    usort($block['links'], function (array $link1, array $link2): int {
+                        return strcmp($link1['name'], $link2['name']);
+                    });
+                    continue;
+                }
+                unset($result[$col][$blockId]);
+            }
+        }
+        return $result;
     }
 
     /**

@@ -38,9 +38,9 @@ readonly class DataService
     public function getAdminData(): object
     {
         $blocks = $this->blockRepository->findBlocks();
-        $trash = $this->blockRepository->findBlocks(true);
+        $trash = $this->blockRepository->findATrash();
         $columns = $this->processColumns($blocks, skipEmptyBlocks: false);
-        $trash = $this->processColumns($trash, skipEmptyBlocks: false);
+//        $trash = $this->processColumns($trash, skipEmptyBlocks: false);
         $views = $this->viewRepository->getViews();
         return (object)[
             'columns' => $columns,
