@@ -31,7 +31,7 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/{id}', methods: ['PUT'])]
-    public function post(Block $block, Request $request, BlockRepository $blockRepository): Response
+    public function put(Block $block, Request $request, BlockRepository $blockRepository): Response
     {
 //        $data = $this->serializer->deserialize($request->getPayload(), BlockDTO::class, 'json');
         $data = json_decode($request->getContent(), true);
@@ -40,5 +40,25 @@ class BlockController extends AbstractController
         }
         $blockRepository->save($block, true);
         return $this->json(null, 204);
+    }
+
+    #[Route('block/', methods: ['POST'])]
+    public function post(Request $request, BlockRepository $blockRepository): Response
+    {
+        $block = new Block();
+//        $data = json_decode($request->getPayload(), true);
+        $data = $request->getPayload();
+        file_put_contents('test.txt', print_r($data->get('name'), true));
+//        foreach ($data as $key => $value) {
+//            $block->{'set' . ucfirst($key)}($value);
+//        }
+
+//        $block->setName($data->get('name'));
+//        $block->setCol($data->get('col'));
+//        $block->setSort($data->get('sort'));
+//        $block->setPrivate($data->get('private'));
+        $blockRepository->save($block, true);
+//        return $this->json(null, 201, ['Location' => "/block/{$block->getId()}"]);
+        return $this->json(null, 201);
     }
 }

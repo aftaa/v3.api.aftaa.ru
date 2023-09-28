@@ -35,14 +35,18 @@ readonly class DataService
         return $data;
     }
 
-    public function getAdminData(): array
+    public function getAdminData(): object
     {
         $blocks = $this->blockRepository->findBlocks();
         $trash = $this->blockRepository->findBlocks(true);
-        $columns = $this->processColumns($blocks, skipEmptyBlocks: true);
+        $columns = $this->processColumns($blocks, skipEmptyBlocks: false);
         $trash = $this->processColumns($trash, skipEmptyBlocks: false);
         $views = $this->viewRepository->getViews();
-        return compact('columns', 'trash', 'views');
+        return (object)[
+            'columns' => $columns,
+            'trash' => $trash,
+            'views' => $views,
+        ];
     }
 
     /**
