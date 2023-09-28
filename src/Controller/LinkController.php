@@ -4,14 +4,10 @@ namespace App\Controller;
 
 use App\DTO as DTO;
 use App\Entity\Link;
-use App\Entity\View;
+use App\Repository\BlockRepository;
 use App\Repository\LinkRepository;
-use App\Repository\ViewRepository;
-use Doctrine\ORM\NonUniqueResultException;
-use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
@@ -24,6 +20,7 @@ class LinkController extends AbstractController
     public function __construct(
         private readonly SerializerInterface $serializer,
         private readonly LinkRepository $linkRepository,
+        private readonly BlockRepository $blockRepository,
     )
     {
         $this->context = (new ObjectNormalizerContextBuilder())->withGroups('api')->toArray();
@@ -38,7 +35,8 @@ class LinkController extends AbstractController
     #[Route('/private/link/{id}', methods: ['PUT'])]
     public function put(Link $link, #[MapRequestPayload] DTO\Link $dto): JsonResponse
     {
-        $dto->modifyEntity($link);
+        $dto->modifyEntity($link, ['block_id']);
+        $link->setBlock($this->blockRepository->find($dto->block_id));
         $this->linkRepository->save($link, true);
         return $this->json(null, 204);
     }
@@ -47,7 +45,8 @@ class LinkController extends AbstractController
     public function post(#[MapRequestPayload] DTO\Link $dto): JsonResponse
     {
         $link = new Link();
-        $dto->modifyEntity($link);
+        $dto->modifyEntity($link, ['block_id']);
+        $link->setBlock($this->blockRepository->find($dto->block_id));
         $link->setDeleted(false);
         $this->linkRepository->save($link, true);
         return $this->json(null, 201);
