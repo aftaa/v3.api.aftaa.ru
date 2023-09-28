@@ -46,19 +46,13 @@ class BlockController extends AbstractController
     public function post(Request $request, BlockRepository $blockRepository): Response
     {
         $block = new Block();
-//        $data = json_decode($request->getPayload(), true);
-        $data = $request->getPayload();
-        file_put_contents('test.txt', print_r($data->get('name'), true));
-//        foreach ($data as $key => $value) {
-//            $block->{'set' . ucfirst($key)}($value);
-//        }
-
-//        $block->setName($data->get('name'));
-//        $block->setCol($data->get('col'));
-//        $block->setSort($data->get('sort'));
-//        $block->setPrivate($data->get('private'));
+        $data = json_decode($request->getContent(), false);
+        $block->setName($data->name)
+            ->setCol($data->col)
+            ->setSort($data->sort)
+            ->setPrivate($data->private ?? false)
+            ->setDeleted(false);
         $blockRepository->save($block, true);
-//        return $this->json(null, 201, ['Location' => "/block/{$block->getId()}"]);
         return $this->json(null, 201);
     }
 }
