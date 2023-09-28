@@ -2,12 +2,14 @@
 
 namespace App\Controller;
 
+use App\DTO\BlockDTO;
 use App\Entity\Block;
 use App\Repository\BlockRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -31,28 +33,36 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/{id}', methods: ['PUT'])]
-    public function put(Block $block, Request $request, BlockRepository $blockRepository): Response
+    public function put(Block $block, #[MapRequestPayload] BlockDTO $dto, BlockRepository $blockRepository): JsonResponse
     {
-//        $data = $this->serializer->deserialize($request->getPayload(), BlockDTO::class, 'json');
-        $data = json_decode($request->getContent(), true);
-        foreach ($data as $key => $value) {
-            $block->{'set' . ucfirst($key)}($value);
-        }
+        $dto->modifyEntity($block);
         $blockRepository->save($block, true);
         return $this->json(null, 204);
     }
 
     #[Route('block/', methods: ['POST'])]
-    public function post(Request $request, BlockRepository $blockRepository): Response
+    public function post(#[MapRequestPayload] BlockDTO $dto, BlockRepository $blockRepository): JsonResponse
     {
         $block = new Block();
-        $data = json_decode($request->getContent(), false);
-        $block->setName($data->name)
-            ->setCol($data->col)
-            ->setSort($data->sort)
-            ->setPrivate($data->private ?? false)
-            ->setDeleted(false);
+        $dto->modifyEntity($block);
+        $block->setDeleted(false);
         $blockRepository->save($block, true);
         return $this->json(null, 201);
+    }
+
+    #[Route('block/{id}', methods: ['DELETE'])]
+    public function delete(Block $block, BlockRepository $blockRepository): JsonResponse
+    {
+        $block->setDeleted(true);
+        $blockRepository->save($block, true);
+        return $this->json(null, 204);
+    }
+
+    #[Route('block/{id}', methods: ['PATCH'])]
+    public function patch(Block $block, BlockRepository $blockRepository): JsonResponse
+    {
+        $block->setDeleted(false);
+        $blockRepository->save($block, true);
+        return $this->json(null, 204);
     }
 }

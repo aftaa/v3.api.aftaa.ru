@@ -2,13 +2,15 @@
 
 namespace App\DTO;
 
-readonly class BlockDTO
+class BlockDTO
 {
+    use ModifyEntityTrait;
+
     public function __construct(
         public string $name,
         public int $col,
         public int $sort,
-        public bool $public,
+        public bool $private,
     )
     {
     }
