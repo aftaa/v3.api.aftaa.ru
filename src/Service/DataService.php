@@ -25,8 +25,7 @@ readonly class DataService
         $rows = $this->viewRepository->findTop(23);
         $top = [];
         foreach ($rows as &$row) {
-            $row['icon'] = $this->replaceIconHref($row['icon']);
-            $top['s' . $row['id']] = $row;
+            $top['_' . $row['id']] = $row;
         }
 
         $columns = $this->processColumns(blocks: $blocks, skipEmptyBlocks: true);
@@ -40,7 +39,6 @@ readonly class DataService
         $blocks = $this->blockRepository->findBlocks();
         $trash = $this->blockRepository->findATrash();
         $columns = $this->processColumns($blocks, skipEmptyBlocks: false);
-//        $trash = $this->processColumns($trash, skipEmptyBlocks: false);
         $views = $this->viewRepository->getViews();
         return (object)[
             'columns' => $columns,
@@ -71,9 +69,6 @@ readonly class DataService
                     continue;
                 }
 
-                $icon = $link->getIcon();
-                $icon = $this->replaceIconHref($icon);
-
                 /** @var Link $link */
                 $link = [
                     'id' => $link->getId(),
@@ -100,14 +95,5 @@ readonly class DataService
             $columns[$block['col']][] = $block;
         }
         return $columns;
-    }
-
-    /**
-     * @param mixed $icon
-     * @return array|mixed|string|string[]
-     */
-    private function replaceIconHref(mixed $icon): mixed
-    {
-        return str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $icon);
     }
 }
