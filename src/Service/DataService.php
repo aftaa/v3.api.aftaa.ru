@@ -25,7 +25,7 @@ readonly class DataService
         $rows = $this->viewRepository->findTop(23);
         $top = [];
         foreach ($rows as &$row) {
-            $top['_' . $row['id']] = $row;
+            $top['s' . $row['id']] = $row;
         }
 
         $columns = $this->processColumns(blocks: $blocks, skipEmptyBlocks: true);
@@ -75,7 +75,7 @@ readonly class DataService
                     'name' => $link->getName(),
                     'href' => $link->getHref(),
                     'private' => $link->isPrivate(),
-                    'icon' => $icon,
+                    'icon' => $link->getIcon(),
                 ];
                 $data[$link['id']] = $link;
             }
