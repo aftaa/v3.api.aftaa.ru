@@ -43,6 +43,10 @@ class ViewRepository extends ServiceEntityRepository
         }
     }
 
+    /**
+     * @param int $limit
+     * @return array
+     */
     public function findTop(int $limit = 42): array
     {
             $qb = $this->createQueryBuilder('v')
@@ -58,7 +62,10 @@ class ViewRepository extends ServiceEntityRepository
             return $qb->getQuery()->execute();
     }
 
-    public function getViews()
+    /**
+     * @return array
+     */
+    public function getViews(): array
     {
         $qb = $this->createQueryBuilder('v')
             ->innerJoin(Link::class, 'l', 'WITH', 'v.link=l')
@@ -73,30 +80,6 @@ class ViewRepository extends ServiceEntityRepository
         return $views;
     }
 
-//    /**
-//     * @return View[] Returns an array of View objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('v')
-//            ->andWhere('v.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('v.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?View
-//    {
-//        return $this->createQueryBuilder('v')
-//            ->andWhere('v.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
     /**
      * @throws NonUniqueResultException
      * @throws NoResultException

@@ -56,6 +56,9 @@ class BlockRepository extends ServiceEntityRepository
         return $qb->getQuery()->getResult();
     }
 
+    /**
+     * @return array
+     */
     public function findATrash(): array
     {
         /** @var Block[] $blocks */
