@@ -13,10 +13,13 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
 
 #[AsCommand(
-    name: 'modify-hrefs',
+    name: 'modify-icons',
 )]
-class ModifyHrefsCommand extends Command
+class ModifyIconsCommand extends Command
 {
+    /**
+     * @param LinkRepository $linkRepository
+     */
     public function __construct(
         protected readonly LinkRepository $linkRepository,
     )
@@ -24,20 +27,36 @@ class ModifyHrefsCommand extends Command
         parent::__construct();
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @return int
+     */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $io = new SymfonyStyle($input, $output);
+        $links = $this->linkRepository->findAll();
+        foreach ($links as $link) {
+            $link->setIcon($this->modifyIcon($link->getIcon()));
+            $this->linkRepository->save($link, true);
+        }
         return Command::SUCCESS;
     }
 
-    protected function getLinks()
+    /**
+     * @return Link[]
+     */
+    protected function getLinks(): array
     {
         return $this->linkRepository->findAll();
     }
 
-    protected function modifyHref(Link &$link)
+    /**
+     * @param string $icon
+     * @return string
+     */
+    protected function modifyIcon(string $icon): string
     {
-        $icon = $link
-        str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $icon);
+        return str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $icon);
     }
 }
