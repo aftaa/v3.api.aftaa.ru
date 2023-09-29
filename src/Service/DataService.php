@@ -6,9 +6,16 @@ use App\Entity\Block;
 use App\Entity\Link;
 use App\Repository\BlockRepository;
 use App\Repository\ViewRepository;
+use App\Service\Helper\BlockToArrayTrait;
+use App\Service\Helper\LinkToArrayTrait;
+use App\Service\Helper\SortLinksTrait;
 
 readonly class DataService
 {
+    use BlockToArrayTrait;
+    use LinkToArrayTrait;
+    use SortLinksTrait;
+
     public function __construct(
         private BlockRepository $blockRepository,
         private ViewRepository  $viewRepository,
@@ -37,7 +44,8 @@ readonly class DataService
     public function getAdminData(): object
     {
         $blocks = $this->blockRepository->findBlocks();
-        $trash = $this->blockRepository->findATrash();
+        $trash = $this->blockRepository->findTrash();
+        $trash = $this->processTrash($trash);
         $columns = $this->processColumns($blocks, skipEmptyBlocks: false);
         $views = $this->viewRepository->getViews();
         return (object)[
@@ -69,14 +77,7 @@ readonly class DataService
                     continue;
                 }
 
-                /** @var Link $link */
-                $link = [
-                    'id' => $link->getId(),
-                    'name' => $link->getName(),
-                    'href' => $link->getHref(),
-                    'private' => $link->isPrivate(),
-                    'icon' => $link->getIcon(),
-                ];
+                $link = $this->linkToArray($link);
                 $data[$link['id']] = $link;
             }
 
@@ -84,16 +85,39 @@ readonly class DataService
                 return strcmp($link1['name'], $link2['name']);
             });
 
-            /** @var Block $block */
-            $block = [
-                'id' => $block->getId(),
-                'name' => $block->getName(),
-                'col' => $block->getCol(),
-                'private' => $block->isPrivate(),
-                'links' => $data,
-            ];
+            $block = $this->blockToArray($block);
+            $block['links'] = $data;
             $columns[$block['col']][] = $block;
         }
         return $columns;
+    }
+
+    /**
+     * @param Block[] $blocks
+     * @return array
+     */
+    private function processTrash(array $blocks): array
+    {
+        $result = [];
+        foreach ($blocks as $block) {
+            $resultBlock = $this->blockToArray($block);
+            foreach ($block->getLinks() as $link) {
+                if ($link->isDeleted()) {
+                    $resultBlock['links'][$link->getId()] = $this->linkToArray($link);
+                }
+            }
+            $result[$block->getCol()][$block->getId()] = $resultBlock;
+        }
+
+        foreach ($result as $col => &$blocks) {
+            foreach ($blocks as $blockId => &$block) {
+                if ($block['deleted'] || count($block['links']) > 0) {
+                    $this->sortLinks($block['links']);
+                } else {
+                    unset($result[$col][$blockId]);
+                }
+            }
+        }
+        return $result;
     }
 }

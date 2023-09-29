@@ -27,7 +27,7 @@ class BlockController extends AbstractController
     #[Route('block/', methods: ['GET'])]
     public function getAll(BlockRepository $blockRepository): JsonResponse
     {
-        $blocks = $blockRepository->findCollection();
+        $blocks = $blockRepository->findNotDeleted();
         return $this->json($this->serializer->normalize($blocks, null, $this->context));
     }
 

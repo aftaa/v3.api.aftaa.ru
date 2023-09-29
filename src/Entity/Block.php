@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
 use App\Repository\BlockRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,7 +9,6 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-#[ApiResource]
 #[ORM\Entity(repositoryClass: BlockRepository::class)]
 class Block
 {
@@ -40,7 +38,7 @@ class Block
     #[Groups('api')]
     private ?bool $deleted = null;
 
-    #[ORM\OneToMany(mappedBy: 'block', targetEntity: Link::class)]
+    #[ORM\OneToMany(mappedBy: 'block', targetEntity: Link::class, fetch: 'LAZY', indexBy: 'id')]
     private Collection $links;
 
     public function __construct()
