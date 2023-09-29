@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Block;
-use App\Entity\Link;
 use App\Repository\BlockRepository;
 use App\Repository\ViewRepository;
 use App\Service\Trait\BlockToArrayTrait;
@@ -48,7 +47,7 @@ readonly class DataService
         $columns = $this->createColumns($blocks, skipEmptyBlocks: false);
 
         $trash = $this->blockRepository->findTrash();
-        $trash = $this->processTrash($trash);
+        $trash = $this->createTrash($trash);
 
         $views = $this->viewRepository->getTotalViews();
         $views = $this->createViews($views);
@@ -65,29 +64,21 @@ readonly class DataService
     {
         $columns = [];
         foreach ($blocks as $block) {
-
             if (!count($block->getLinks()) && $skipEmptyBlocks) {
                 continue;
             }
-
             $links = $block->getLinks();
-            $data = [];
+            $arr = [];
             foreach ($links as $link) {
-
                 if ($link->isDeleted()) {
                     continue;
                 }
-
                 $link = $this->linkToArray($link);
-                $data[$link['id']] = $link;
+                $arr[$link['id']] = $link;
             }
-
-            usort($data, function (array $link1, array $link2): int {
-                return strcmp($link1['name'], $link2['name']);
-            });
-
+            $this->sortLinks($arr);
             $block = $this->blockToArray($block);
-            $block['links'] = $data;
+            $block['links'] = $arr;
             $columns[$block['col']][] = $block;
         }
         return $columns;
@@ -97,7 +88,7 @@ readonly class DataService
      * @param Block[] $blocks
      * @return array
      */
-    private function processTrash(array $blocks): array
+    private function createTrash(array $blocks): array
     {
         $result = [];
         foreach ($blocks as $block) {
