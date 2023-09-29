@@ -25,7 +25,7 @@ readonly class DataService
         $rows = $this->viewRepository->findTop(23);
         $top = [];
         foreach ($rows as &$row) {
-            $top['s' . $row['id']] = $row;
+            $top['_' . $row['id']] = $row;
         }
 
         $columns = $this->processColumns(blocks: $blocks, skipEmptyBlocks: true);
