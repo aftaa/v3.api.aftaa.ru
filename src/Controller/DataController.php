@@ -13,13 +13,13 @@ class DataController extends AbstractController
     public function index(DataService $dataService): JsonResponse
     {
         return $this->json([
-            'data' => $dataService->getIndexData(),
+            'data' => $dataService->index(),
         ]);
     }
 
     #[Route('/private/data/admin')]
     public function admin(DataService $dataService): JsonResponse
     {
-        return $this->json($dataService->getAdminData());
+        return $this->json($dataService->admin());
     }
 }

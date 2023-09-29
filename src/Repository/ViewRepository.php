@@ -8,6 +8,7 @@ use App\Entity\View;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
+use Doctrine\ORM\Query\QueryException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -64,27 +65,25 @@ class ViewRepository extends ServiceEntityRepository
 
     /**
      * @return array
+     * @throws QueryException
      */
-    public function getViews(): array
+    public function getTotalViews(): array
     {
-        $qb = $this->createQueryBuilder('v')
+        return $this->createQueryBuilder('v')
             ->innerJoin(Link::class, 'l', 'WITH', 'v.link=l')
             ->select('COUNT(v) AS count')
             ->addSelect('l.id')
-            ->groupBy('l.id');
-        $rows = $qb->getQuery()->execute();
-        $views = [];
-        foreach ($rows as $row) {
-            $views[$row['id']] = $row['count'];
-        }
-        return $views;
+            ->groupBy('l.id')
+            ->getQuery()->execute();
     }
 
     /**
-     * @throws NonUniqueResultException
+     * @param int $linkId
+     * @return int
      * @throws NoResultException
+     * @throws NonUniqueResultException
      */
-    public function findViews(?int $linkId): int
+    public function findByLink(int $linkId): int
     {
         return $this->createQueryBuilder('v')
             ->select('COUNT(v)')

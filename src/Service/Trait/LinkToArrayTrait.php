@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service\Helper;
+namespace App\Service\Trait;
 
 use App\Entity\Link;
 

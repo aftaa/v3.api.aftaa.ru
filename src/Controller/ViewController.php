@@ -31,7 +31,7 @@ class ViewController extends AbstractController
         $view->setLink($link);
         $viewRepository->save($view, true);
 
-        $views = $viewRepository->findViews($link->getId());
+        $views = $viewRepository->findByLink($link->getId());
         return $this->json([
             'views' => $views,
         ]);

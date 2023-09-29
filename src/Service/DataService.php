@@ -6,9 +6,10 @@ use App\Entity\Block;
 use App\Entity\Link;
 use App\Repository\BlockRepository;
 use App\Repository\ViewRepository;
-use App\Service\Helper\BlockToArrayTrait;
-use App\Service\Helper\LinkToArrayTrait;
-use App\Service\Helper\SortLinksTrait;
+use App\Service\Trait\BlockToArrayTrait;
+use App\Service\Trait\LinkToArrayTrait;
+use App\Service\Trait\SortLinksTrait;
+use Doctrine\ORM\Query\QueryException;
 
 readonly class DataService
 {
@@ -26,33 +27,33 @@ readonly class DataService
     /**
      * @return array
      */
-    public function getIndexData(): array
+    public function index(): array
     {
-        $blocks = $this->blockRepository->findBlocks();
-        $rows = $this->viewRepository->findTop(23);
-        $top = [];
-        foreach ($rows as &$row) {
-            $top['_' . $row['id']] = $row;
-        }
+        $blocks = $this->blockRepository->findNotDeletedOrdered();
+        $columns = $this->createColumns(blocks: $blocks, skipEmptyBlocks: true);
 
-        $columns = $this->processColumns(blocks: $blocks, skipEmptyBlocks: true);
-        $data['columns'] = $columns;
-        $data['top'] = $top;
-        return $data;
+        $top = $this->viewRepository->findTop(23);
+        $top = $this->createTop($top);
+
+        return compact('columns', 'top');
     }
 
-    public function getAdminData(): object
+    /**
+     * @return array
+     * @throws QueryException
+     */
+    public function admin(): array
     {
-        $blocks = $this->blockRepository->findBlocks();
+        $blocks = $this->blockRepository->findNotDeletedOrdered();
+        $columns = $this->createColumns($blocks, skipEmptyBlocks: false);
+
         $trash = $this->blockRepository->findTrash();
         $trash = $this->processTrash($trash);
-        $columns = $this->processColumns($blocks, skipEmptyBlocks: false);
-        $views = $this->viewRepository->getViews();
-        return (object)[
-            'columns' => $columns,
-            'trash' => $trash,
-            'views' => $views,
-        ];
+
+        $views = $this->viewRepository->getTotalViews();
+        $views = $this->createViews($views);
+
+        return compact('columns', 'trash', 'views');
     }
 
     /**
@@ -60,7 +61,7 @@ readonly class DataService
      * @param bool $skipEmptyBlocks
      * @return array
      */
-    private function processColumns(array $blocks, bool $skipEmptyBlocks): array
+    private function createColumns(array $blocks, bool $skipEmptyBlocks): array
     {
         $columns = [];
         foreach ($blocks as $block) {
@@ -119,5 +120,31 @@ readonly class DataService
             }
         }
         return $result;
+    }
+
+    /**
+     * @param array $rows
+     * @return array
+     */
+    public function createTop(array $rows): array
+    {
+        $top = [];
+        foreach ($rows as $row) {
+            $top['_' . $row['id']] = $row;
+        }
+        return $top;
+    }
+
+    /**
+     * @param array $views
+     * @return array
+     */
+    public function createViews(array $views): array
+    {
+        $arr = [];
+        foreach ($views as $view) {
+            $arr[$view['id']] = $view['count'];
+        }
+        return $arr;
     }
 }

@@ -41,18 +41,13 @@ class BlockRepository extends ServiceEntityRepository
     }
 
     /**
-     * @param bool $deleted
-     * @return Block[]
+     * @return array
      */
-    public function findBlocks(bool $deleted = false): array
+    public function findNotDeletedOrdered(): array
     {
         $qb = $this->createQueryBuilder('b')
-            ->addOrderBy('b.sort');
-        if ($deleted) {
-            $qb->where('b.deleted=TRUE');
-        } else {
-            $qb->where('b.deleted=FALSE');
-        }
+            ->addOrderBy('b.sort')
+            ->where('b.deleted=FALSE');
         return $qb->getQuery()->getResult();
     }
 
