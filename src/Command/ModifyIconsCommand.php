@@ -17,8 +17,8 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 )]
 final class ModifyIconsCommand extends Command
 {
-    final public const OLD_ICON_URL = 'https://v3.api.aftaa.ru';
-    final public const NEW_ICON_URL = 'https://icons.aftaa.ru';
+    final public const OLD_ICON_URL = 'https://icons.aftaa.ru/favicons/';
+    final public const NEW_ICON_URL = 'https://icons.aftaa.ru/';
 
     /**
      * @param LinkRepository $linkRepository
