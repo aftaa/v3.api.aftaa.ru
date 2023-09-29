@@ -15,13 +15,16 @@ use Symfony\Component\Console\Style\SymfonyStyle;
 #[AsCommand(
     name: 'modify-icons',
 )]
-class ModifyIconsCommand extends Command
+final class ModifyIconsCommand extends Command
 {
+    final public const OLD_ICON_URL = 'https://v3.api.aftaa.ru';
+    final public const NEW_ICON_URL = 'https://icons.aftaa.ru';
+
     /**
      * @param LinkRepository $linkRepository
      */
     public function __construct(
-        protected readonly LinkRepository $linkRepository,
+        private readonly LinkRepository $linkRepository,
     )
     {
         parent::__construct();
@@ -46,7 +49,7 @@ class ModifyIconsCommand extends Command
     /**
      * @return Link[]
      */
-    protected function getLinks(): array
+    private function getLinks(): array
     {
         return $this->linkRepository->findAll();
     }
@@ -55,8 +58,8 @@ class ModifyIconsCommand extends Command
      * @param string $icon
      * @return string
      */
-    protected function modifyIcon(string $icon): string
+    private function modifyIcon(string $icon): string
     {
-        return str_replace('https://v2.api.aftaa.ru', 'https://v3.api.aftaa.ru', $icon);
+        return str_replace(self::OLD_ICON_URL, self::NEW_ICON_URL, $icon);
     }
 }
