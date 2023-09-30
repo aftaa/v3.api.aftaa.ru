@@ -38,7 +38,7 @@ class Block
     #[Groups('api')]
     private ?bool $deleted = null;
 
-    #[ORM\OneToMany(mappedBy: 'block', targetEntity: Link::class, fetch: 'LAZY', indexBy: 'id')]
+    #[ORM\OneToMany(mappedBy: 'block', targetEntity: Link::class, cascade: ['persist'], indexBy: 'id')]
     private Collection $links;
 
     public function __construct()
