@@ -42,15 +42,11 @@ class Link
     #[Groups('api')]
     private ?bool $deleted = null;
 
-    #[ORM\OneToMany(mappedBy: 'link', targetEntity: ReportRow::class)]
-    private Collection $reportRows;
-
     #[ORM\OneToMany(mappedBy: 'link', targetEntity: View::class)]
     private Collection $views;
 
     public function __construct()
     {
-        $this->reportRows = new ArrayCollection();
         $this->views = new ArrayCollection();
     }
 
@@ -127,36 +123,6 @@ class Link
     public function setDeleted(bool $deleted): static
     {
         $this->deleted = $deleted;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, ReportRow>
-     */
-    public function getReportRows(): Collection
-    {
-        return $this->reportRows;
-    }
-
-    public function addReportRow(ReportRow $reportRow): static
-    {
-        if (!$this->reportRows->contains($reportRow)) {
-            $this->reportRows->add($reportRow);
-            $reportRow->setLink($this);
-        }
-
-        return $this;
-    }
-
-    public function removeReportRow(ReportRow $reportRow): static
-    {
-        if ($this->reportRows->removeElement($reportRow)) {
-            // set the owning side to null (unless already changed)
-            if ($reportRow->getLink() === $this) {
-                $reportRow->setLink(null);
-            }
-        }
 
         return $this;
     }
