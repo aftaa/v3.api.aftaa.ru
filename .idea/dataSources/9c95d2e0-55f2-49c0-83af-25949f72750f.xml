@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<dataSource name="a@vps-01.data-files.ru">
+<dataSource name="a_test@localhost">
   <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.49">
     <root id="1">
       <DefaultCasing>exact</DefaultCasing>
@@ -22,7 +22,43 @@ a|schema||a||REFERENCES|G
 a|schema||a||SELECT|G
 a|schema||a||SHOW VIEW|G
 a|schema||a||TRIGGER|G
-a|schema||a||UPDATE|G</Grants>
+a|schema||a||UPDATE|G
+a_test|schema||a||ALTER|G
+a_test|schema||a||ALTER ROUTINE|G
+a_test|schema||a||CREATE|G
+a_test|schema||a||CREATE ROUTINE|G
+a_test|schema||a||CREATE TEMPORARY TABLES|G
+a_test|schema||a||CREATE VIEW|G
+a_test|schema||a||DELETE|G
+a_test|schema||a||DROP|G
+a_test|schema||a||EVENT|G
+a_test|schema||a||EXECUTE|G
+a_test|schema||a||INDEX|G
+a_test|schema||a||INSERT|G
+a_test|schema||a||LOCK TABLES|G
+a_test|schema||a||REFERENCES|G
+a_test|schema||a||SELECT|G
+a_test|schema||a||SHOW VIEW|G
+a_test|schema||a||TRIGGER|G
+a_test|schema||a||UPDATE|G
+test|schema||a||ALTER|G
+test|schema||a||ALTER ROUTINE|G
+test|schema||a||CREATE|G
+test|schema||a||CREATE ROUTINE|G
+test|schema||a||CREATE TEMPORARY TABLES|G
+test|schema||a||CREATE VIEW|G
+test|schema||a||DELETE|G
+test|schema||a||DROP|G
+test|schema||a||EVENT|G
+test|schema||a||EXECUTE|G
+test|schema||a||INDEX|G
+test|schema||a||INSERT|G
+test|schema||a||LOCK TABLES|G
+test|schema||a||REFERENCES|G
+test|schema||a||SELECT|G
+test|schema||a||SHOW VIEW|G
+test|schema||a||TRIGGER|G
+test|schema||a||UPDATE|G</Grants>
       <ServerVersion>8.0.34</ServerVersion>
     </root>
     <collation id="2" parent="1" name="armscii8_general_ci">
@@ -931,233 +967,195 @@ a|schema||a||UPDATE|G</Grants>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <schema id="290" parent="1" name="a">
-      <Current>1</Current>
-      <IntrospectionTimestamp>2023-09-30.10:02:04</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-09-30.07:02:04</LocalIntrospectionTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
-    <user id="291" parent="1" name="a"/>
-    <table id="292" parent="290" name="block">
+    <schema id="291" parent="1" name="a_test">
+      <Current>1</Current>
+      <IntrospectionTimestamp>2023-09-30.13:27:02</IntrospectionTimestamp>
+      <LocalIntrospectionTimestamp>2023-09-30.10:27:02</LocalIntrospectionTimestamp>
+      <CollationName>utf8mb4_0900_ai_ci</CollationName>
+    </schema>
+    <user id="292" parent="1" name="a"/>
+    <table id="293" parent="291" name="block">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <table id="293" parent="290" name="doctrine_migration_versions">
-      <Engine>InnoDB</Engine>
-      <CollationName>utf8mb3_unicode_ci</CollationName>
-    </table>
-    <table id="294" parent="290" name="link">
+    <table id="294" parent="291" name="link">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <table id="295" parent="290" name="user">
+    <table id="295" parent="291" name="user">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb4_unicode_ci</CollationName>
     </table>
-    <table id="296" parent="290" name="view">
+    <table id="296" parent="291" name="view">
       <Engine>InnoDB</Engine>
       <CollationName>utf8mb3_general_ci</CollationName>
     </table>
-    <column id="297" parent="292" name="id">
-      <AutoIncrement>49</AutoIncrement>
+    <column id="297" parent="293" name="id">
+      <AutoIncrement>3</AutoIncrement>
       <DasType>int unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="298" parent="292" name="name">
+    <column id="298" parent="293" name="name">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="299" parent="292" name="col">
+    <column id="299" parent="293" name="col">
       <DasType>tinyint unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="300" parent="292" name="sort">
+    <column id="300" parent="293" name="sort">
       <DasType>int unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="301" parent="292" name="private">
+    <column id="301" parent="293" name="private">
       <DasType>tinyint(1)|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="302" parent="292" name="deleted">
+    <column id="302" parent="293" name="deleted">
       <DasType>tinyint(1)|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <index id="303" parent="292" name="PRIMARY">
+    <index id="303" parent="293" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="304" parent="292" name="PRIMARY">
+    <key id="304" parent="293" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="305" parent="293" name="version">
-      <DasType>varchar(191)|0s</DasType>
-      <NotNull>1</NotNull>
-      <Position>1</Position>
-    </column>
-    <column id="306" parent="293" name="executed_at">
-      <DasType>datetime|0s</DasType>
-      <Position>2</Position>
-    </column>
-    <column id="307" parent="293" name="execution_time">
-      <DasType>int|0s</DasType>
-      <Position>3</Position>
-    </column>
-    <index id="308" parent="293" name="PRIMARY">
-      <ColNames>version</ColNames>
-      <Type>btree</Type>
-      <Unique>1</Unique>
-    </index>
-    <key id="309" parent="293" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <Primary>1</Primary>
-      <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
-    </key>
-    <column id="310" parent="294" name="id">
-      <AutoIncrement>156</AutoIncrement>
+    <column id="305" parent="294" name="id">
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="311" parent="294" name="block_id">
+    <column id="306" parent="294" name="block_id">
       <DasType>int unsigned|0s</DasType>
       <Position>2</Position>
     </column>
-    <column id="312" parent="294" name="name">
+    <column id="307" parent="294" name="name">
       <DasType>varchar(50)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="313" parent="294" name="href">
+    <column id="308" parent="294" name="href">
       <DasType>varchar(150)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <column id="314" parent="294" name="icon">
+    <column id="309" parent="294" name="icon">
       <DasType>varchar(100)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>5</Position>
     </column>
-    <column id="315" parent="294" name="private">
+    <column id="310" parent="294" name="private">
       <DasType>tinyint(1)|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>6</Position>
     </column>
-    <column id="316" parent="294" name="deleted">
+    <column id="311" parent="294" name="deleted">
       <DasType>tinyint(1)|0s</DasType>
       <DefaultExpression>0</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>7</Position>
     </column>
-    <foreign-key id="317" parent="294" name="FK_link_block">
-      <ColNames>block_id</ColNames>
-      <OnDelete>set-null</OnDelete>
-      <OnUpdate>cascade</OnUpdate>
-      <RefColNames>id</RefColNames>
-      <RefTableName>block</RefTableName>
-    </foreign-key>
-    <index id="318" parent="294" name="PRIMARY">
+    <index id="312" parent="294" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="319" parent="294" name="FK_link_block_id">
+    <index id="313" parent="294" name="FK_link_block_id">
       <ColNames>block_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="320" parent="294" name="PRIMARY">
+    <key id="314" parent="294" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <column id="321" parent="295" name="id">
+    <column id="315" parent="295" name="id">
       <AutoIncrement>3</AutoIncrement>
       <DasType>int|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="322" parent="295" name="email">
+    <column id="316" parent="295" name="email">
       <DasType>varchar(180)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="323" parent="295" name="roles">
+    <column id="317" parent="295" name="roles">
       <DasType>json|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="324" parent="295" name="password">
+    <column id="318" parent="295" name="password">
       <DasType>varchar(255)|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <index id="325" parent="295" name="PRIMARY">
+    <index id="319" parent="295" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="326" parent="295" name="UNIQ_8D93D649E7927C74">
+    <index id="320" parent="295" name="UNIQ_8D93D649E7927C74">
       <ColNames>email</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <key id="327" parent="295" name="PRIMARY">
+    <key id="321" parent="295" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
-    <key id="328" parent="295" name="UNIQ_8D93D649E7927C74">
+    <key id="322" parent="295" name="UNIQ_8D93D649E7927C74">
       <UnderlyingIndexName>UNIQ_8D93D649E7927C74</UnderlyingIndexName>
     </key>
-    <column id="329" parent="296" name="id">
-      <AutoIncrement>4796</AutoIncrement>
+    <column id="323" parent="296" name="id">
+      <AutoIncrement>1</AutoIncrement>
       <DasType>int unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>1</Position>
     </column>
-    <column id="330" parent="296" name="link_id">
+    <column id="324" parent="296" name="link_id">
       <DasType>int unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>2</Position>
     </column>
-    <column id="331" parent="296" name="date_time">
+    <column id="325" parent="296" name="date_time">
       <DasType>datetime|0s</DasType>
       <NotNull>1</NotNull>
       <Position>3</Position>
     </column>
-    <column id="332" parent="296" name="ip4">
+    <column id="326" parent="296" name="ip4">
       <DasType>int unsigned|0s</DasType>
       <NotNull>1</NotNull>
       <Position>4</Position>
     </column>
-    <foreign-key id="333" parent="296" name="FK_link">
-      <ColNames>link_id</ColNames>
-      <OnDelete>cascade</OnDelete>
-      <OnUpdate>cascade</OnUpdate>
-      <RefColNames>id</RefColNames>
-      <RefTableName>link</RefTableName>
-    </foreign-key>
-    <index id="334" parent="296" name="PRIMARY">
+    <index id="327" parent="296" name="PRIMARY">
       <ColNames>id</ColNames>
       <Type>btree</Type>
       <Unique>1</Unique>
     </index>
-    <index id="335" parent="296" name="FK2">
+    <index id="328" parent="296" name="FK2">
       <ColNames>link_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="336" parent="296" name="PRIMARY">
+    <key id="329" parent="296" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <Primary>1</Primary>
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
