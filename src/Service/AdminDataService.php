@@ -11,20 +11,8 @@ use App\Service\Trait\LinkToArrayTrait;
 use App\Service\Trait\SortLinksTrait;
 use Doctrine\ORM\Query\QueryException;
 
-readonly class AdminDataService
+final class AdminDataService extends AbstractDataService
 {
-    use BlockToArrayTrait;
-    use LinkToArrayTrait;
-    use SortLinksTrait;
-    use CreateColumnsTrait;
-
-    public function __construct(
-        private BlockRepository $blockRepository,
-        private ViewRepository  $viewRepository,
-    )
-    {
-    }
-
     /**
      * @return array
      * @throws QueryException

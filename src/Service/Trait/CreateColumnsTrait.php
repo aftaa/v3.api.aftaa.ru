@@ -9,7 +9,7 @@ trait CreateColumnsTrait
      * @param bool $skipEmptyBlocks
      * @return array
      */
-    private function createColumns(array $blocks, bool $skipEmptyBlocks): array
+    protected function createColumns(array $blocks, bool $skipEmptyBlocks): array
     {
         $columns = [];
         foreach ($blocks as $block) {

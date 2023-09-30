@@ -10,7 +10,7 @@ trait BlockToArrayTrait
      * @param Block $block
      * @return array
      */
-    public function blockToArray(Block $block): array
+    protected function blockToArray(Block $block): array
     {
         return [
             'id' => $block->getId(),

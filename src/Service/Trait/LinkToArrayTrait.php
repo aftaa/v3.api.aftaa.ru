@@ -10,7 +10,7 @@ trait LinkToArrayTrait
      * @param Link $link
      * @return array
      */
-    public function linkToArray(Link $link): array
+    protected function linkToArray(Link $link): array
     {
         return [
             'id' => $link->getId(),
