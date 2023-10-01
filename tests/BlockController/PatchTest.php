@@ -33,7 +33,6 @@ class PatchTest extends ApiTestCase
      */
     public function testPatch(): void
     {
-        self::assertEquals(1, 1);
         $response = $this->jwtRequest('PATCH', '/private/block/3');
         self::assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
 
