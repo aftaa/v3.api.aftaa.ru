@@ -8,6 +8,7 @@ use App\Repository\BlockRepository;
 use App\Repository\LinkRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
@@ -38,7 +39,7 @@ class LinkController extends AbstractController
         $dto->modifyEntity($link, ['block_id']);
         $link->setBlock($this->blockRepository->find($dto->block_id));
         $this->linkRepository->save($link, true);
-        return $this->json(null, 204);
+        return $this->json(null, Response::HTTP_NO_CONTENT);
     }
 
     #[Route('/private/link/', methods: ['POST'])]
@@ -49,7 +50,7 @@ class LinkController extends AbstractController
         $link->setBlock($this->blockRepository->find($dto->block_id));
         $link->setDeleted(false);
         $this->linkRepository->save($link, true);
-        return $this->json(null, 201);
+        return $this->json(['id' => $link->getId()], Response::HTTP_CREATED);
     }
 
     #[Route('/private/link/{id}', methods: ['DELETE'])]
