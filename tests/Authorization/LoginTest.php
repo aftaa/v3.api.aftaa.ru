@@ -1,6 +1,6 @@
 <?php
 
-namespace Authorization;
+namespace App\Tests\Authorization;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\DataFixtures\AppFixtures;
@@ -13,7 +13,7 @@ use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 use function Symfony\Component\String\u;
 
-class JwtTest extends ApiTestCase
+class LoginTest extends ApiTestCase
 {
     use Jwt;
 
