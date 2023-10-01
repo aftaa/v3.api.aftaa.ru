@@ -16,16 +16,7 @@ class TestController extends AbstractController
     public function test(): JsonResponse
     {
         return $this->json([
-            $this->getUser()?->getUserIdentifier(),
+            'user' => $this->getUser()?->getUserIdentifier(),
         ]);
-    }
-
-    #[Route('/public/test')]
-    public function testData(BlockRepository $blockRepository): Response
-    {
-        $data = $blockRepository->findNotDeletedSortedByNameIndexedById();
-//        dump($data);
-        echo '<pre>'; print_r($data);
-        return new Response('');
     }
 }
