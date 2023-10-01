@@ -21,7 +21,7 @@ class DeleteTest extends ApiTestCase
         'col' => 1,
         'sort' => 0,
         'private' => true,
-        'deleted' => false,
+        'deleted' => true,
     ];
 
     /**
@@ -34,12 +34,11 @@ class DeleteTest extends ApiTestCase
     public function testDelete(): void
     {
         $response = $this->jwtRequest('DELETE', '/private/block/1');
-        self::assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
         $response = $this->jwtRequest('GET', '/private/block/1');
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
         $arrayResponse = $response->toArray();
-        dump($arrayResponse);
 
         self::assertEquals($this->expect, $arrayResponse);
     }

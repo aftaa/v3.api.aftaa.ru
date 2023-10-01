@@ -45,6 +45,7 @@ trait Jwt
     /**
      * @param string $method
      * @param string $url
+     * @param array|null $body
      * @return ResponseInterface
      * @throws ClientExceptionInterface
      * @throws DecodingExceptionInterface
@@ -52,14 +53,20 @@ trait Jwt
      * @throws ServerExceptionInterface
      * @throws TransportExceptionInterface
      */
-    public function jwtRequest(string $method, string $url): ResponseInterface
+    public function jwtRequest(string $method, string $url, ?array $body = null): ResponseInterface
     {
-        return self::createClient()->request($method, $url, [
+        $options = [
             'headers' => [
                 'Authorization' => 'Bearer ' . $this->getToken(),
                 'Content-type' => 'application/json',
                 'Accept' => 'application/json',
             ],
-        ]);
+        ];
+
+        if (null !== $body) {
+            $options['body'] = json_encode($body);
+        }
+
+        return self::createClient()->request($method, $url, $options);
     }
 }

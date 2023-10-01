@@ -7,6 +7,7 @@ use App\Entity\Block;
 use App\Repository\BlockRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Attribute\MapRequestPayload;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
@@ -52,7 +53,7 @@ class BlockController extends AbstractController
         $dto->modifyEntity($block);
         $block->setDeleted(false);
         $blockRepository->save($block, true);
-        return $this->json(null, 201);
+        return $this->json(['id' => $block->getId()], Response::HTTP_CREATED);
     }
 
     #[Route('block/{id}', methods: ['DELETE'])]
@@ -60,7 +61,7 @@ class BlockController extends AbstractController
     {
         $block->setDeleted(true);
         $blockRepository->save($block, true);
-        return $this->json(null, 204);
+        return $this->json(null);
     }
 
     #[Route('block/{id}', methods: ['PATCH'])]
