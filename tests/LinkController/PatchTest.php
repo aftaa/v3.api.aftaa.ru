@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\BlockController;
+namespace App\Tests\LinkController;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 

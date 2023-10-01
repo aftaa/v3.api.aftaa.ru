@@ -5,6 +5,11 @@ namespace App\Tests\BlockController;
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\Tests\Jwt;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
+use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
 
 class GetAllTest extends ApiTestCase
 {
@@ -29,6 +34,14 @@ class GetAllTest extends ApiTestCase
         ]
     ];
 
+    /**
+     * @return void
+     * @throws ClientExceptionInterface
+     * @throws DecodingExceptionInterface
+     * @throws RedirectionExceptionInterface
+     * @throws ServerExceptionInterface
+     * @throws TransportExceptionInterface
+     */
     public function testGetAll(): void
     {
         $response = $this->jwtRequest('GET', '/private/block/');
