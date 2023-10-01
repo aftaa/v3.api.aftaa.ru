@@ -5,25 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6afbe0a1-980b-4a51-830a-7ba97c77cea2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/phpunit.xml.dist" beforeDir="false" afterPath="$PROJECT_DIR$/phpunit.xml.dist" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/BlockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BlockController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/BlockController/DeleteTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/BlockController/DeleteTest.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/tests/BlockController/PatchTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/BlockController/PatchTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/BlockController/PostTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/BlockController/PostTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/BlockController/PutTest.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/BlockController/PutTest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/Jwt.php" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Jwt.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/LinkController/DeleteTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/LinkController/GetTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/LinkController/PatchTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/LinkController/PostTest.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/LinkController/PutTest.php" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -217,7 +199,7 @@
       <workItem from="1695805583733" duration="44872000" />
       <workItem from="1695928486145" duration="53207000" />
       <workItem from="1696085736572" duration="9842000" />
-      <workItem from="1696141661020" duration="21782000" />
+      <workItem from="1696141661020" duration="22124000" />
     </task>
     <servers />
   </component>
