@@ -55,9 +55,14 @@ trait Jwt
      */
     public function jwtRequest(string $method, string $url, ?array $body = null): ResponseInterface
     {
+        static $token = null;
+        if (null === $token) {
+            $token = $this->getToken();
+        }
+
         $options = [
             'headers' => [
-                'Authorization' => 'Bearer ' . $this->getToken(),
+                'Authorization' => 'Bearer ' . $token,
                 'Content-type' => 'application/json',
                 'Accept' => 'application/json',
             ],
