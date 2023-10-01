@@ -1,23 +1,21 @@
 <?php
 
-namespace App\Tests;
+namespace Authorization;
 
 use ApiPlatform\Symfony\Bundle\Test\ApiTestCase;
 use App\DataFixtures\AppFixtures;
-use JsonException;
+use App\Tests\Jwt;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\String\UnicodeString;
 use Symfony\Contracts\HttpClient\Exception\ClientExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\DecodingExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\RedirectionExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\ServerExceptionInterface;
 use Symfony\Contracts\HttpClient\Exception\TransportExceptionInterface;
-use Symfony\Contracts\HttpClient\ResponseInterface;
 use function Symfony\Component\String\u;
 
 class JwtTest extends ApiTestCase
 {
-    public UnicodeString $token;
+    use Jwt;
 
     /**
      * @throws RedirectionExceptionInterface
@@ -57,46 +55,5 @@ class JwtTest extends ApiTestCase
         self::assertJsonContains([
             'message' => 'Invalid credentials.',
         ]);
-    }
-
-    /**
-     * JSON Login try with a given email and password.
-     * @throws TransportExceptionInterface
-     */
-    public function login($username, $password): ResponseInterface
-    {
-        return self::createClient()->request('POST', '/login_check', [
-            'json' => compact('username', 'password'),
-            'headers' => [
-                'Content-type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-        ]);
-    }
-
-    /**
-     * @return void
-     * @throws ClientExceptionInterface
-     * @throws DecodingExceptionInterface
-     * @throws RedirectionExceptionInterface
-     * @throws ServerExceptionInterface
-     * @throws TransportExceptionInterface
-     */
-    public function testTestController()
-    {
-        $response = $this->login(AppFixtures::USERNAME, AppFixtures::PASSWORD);
-        $token = u($response->toArray()['token'])->toString();
-
-        $response = self::createClient()->request('GET', '/private/test', [
-            'headers' => [
-                'Authorization' => 'Bearer ' . $token,
-                'Content-type' => 'application/json',
-                'Accept' => 'application/json',
-            ],
-        ]);
-
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
-        $arrayResponse = $response->toArray();
-        self::assertArrayHasKey('user', $arrayResponse);
     }
 }
