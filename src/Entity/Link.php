@@ -42,7 +42,7 @@ class Link
     #[Groups('api')]
     private ?bool $deleted = null;
 
-    #[ORM\OneToMany(mappedBy: 'link', targetEntity: View::class)]
+    #[ORM\OneToMany(mappedBy: 'link', targetEntity: View::class, cascade: ['persist'], indexBy: 'id')]
     private Collection $views;
 
     public function __construct()

@@ -5,6 +5,8 @@ namespace App\DataFixtures;
 use App\Entity\Block;
 use App\Entity\Link;
 use App\Entity\User;
+use App\Entity\View;
+use App\Repository\BlockRepository;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
@@ -15,7 +17,8 @@ class AppFixtures extends Fixture
     final public const PASSWORD = 'test';
 
     public function __construct(
-        private UserPasswordHasherInterface $hasher,
+        private readonly UserPasswordHasherInterface $hasher,
+        private readonly BlockRepository             $blockRepository,
     )
     {
     }
@@ -44,9 +47,22 @@ class AppFixtures extends Fixture
                         ->setDeleted($deleted[$j]);
                     $block->addLink($link);
                 }
-
                 $manager->persist($block);
             }
+            $manager->flush();
+
+            $block = $this->blockRepository->find(1);
+
+            for ($k = 0; $k < 4; $k++) {
+                $view = new View();
+                $view
+                    ->setDateTime(new \DateTime('2023-10-02 05:28:00'))
+                    ->setIp4(ip2long('127.0.0.1'));
+                $block->getLinks()[0]->addView($view);
+            }
+
+            $manager->persist($block, true);
+
 
             $user = new User();
             $user->setEmail(self::USERNAME);

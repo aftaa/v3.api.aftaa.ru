@@ -10,6 +10,7 @@ use Doctrine\ORM\NoResultException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class ViewController extends AbstractController
@@ -34,6 +35,7 @@ class ViewController extends AbstractController
         $views = $viewRepository->findByLink($link->getId());
         return $this->json([
             'views' => $views,
-        ]);
+
+        ], Response::HTTP_OK);
     }
 }

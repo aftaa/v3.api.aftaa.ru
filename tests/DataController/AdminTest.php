@@ -168,7 +168,9 @@ class AdminTest extends ApiTestCase
                 ],
             ],
         ],
-        'views' => [],
+        'views' => [
+            1 => 4,
+        ],
     ];
     
     /**

@@ -69,11 +69,19 @@ class IndexTest extends ApiTestCase
                     ],
                 ],
             ],
-            'top' => []
-        ]
+            'top' => [
+                '_1' => [
+                    'count' => 4,
+                    'name' => 'Link 1 in block block 1',
+                    'icon' => 'https://new.aftaa.ru/favicon.ico',
+                    'href' => 'https://new.aftaa.ru/',
+                    'id' => 1,
+                ],
+            ],
+        ],
     ];
 
-    
+
     /**
      * @throws RedirectionExceptionInterface
      * @throws DecodingExceptionInterface
