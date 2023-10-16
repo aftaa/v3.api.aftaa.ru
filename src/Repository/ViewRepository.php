@@ -6,6 +6,7 @@ use App\Entity\Block;
 use App\Entity\Link;
 use App\Entity\View;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\NonUniqueResultException;
 use Doctrine\ORM\NoResultException;
 use Doctrine\ORM\Query\QueryException;
@@ -61,6 +62,27 @@ class ViewRepository extends ServiceEntityRepository
                 ->orderBy('COUNT(v)', 'DESC')
                 ->groupBy('l.id');
             return $qb->getQuery()->execute();
+    }
+
+    /**
+     * @param int $limit
+     * @return array
+     * @throws Exception
+     */
+    public function findLast(int $limit = 42): array
+    {
+        $limit = (int)$limit;
+        $sql = "
+            SELECT DISTINCT l.name, l.href, l.icon, l.id, v.date_time FROM view v
+                INNER JOIN link l ON l.id=link_id
+                INNER JOIN block b ON b.id=block_id
+            WHERE l.deleted=FALSE AND b.deleted=FALSE
+            -- GROUP BY l.id
+            ORDER BY v.date_time DESC
+            LIMIT $limit
+        ";
+        $conn = $this->getEntityManager()->getConnection();
+        return $conn->executeQuery($sql)->fetchAllAssociative();
     }
 
     /**
