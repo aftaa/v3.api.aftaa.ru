@@ -2,8 +2,10 @@
 
 namespace App\Controller;
 
+use App\Repository\ViewRepository;
 use App\Service\AdminDataService;
 use App\Service\IndexDataService;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\Query\QueryException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -21,6 +23,17 @@ class DataController extends AbstractController
         return $this->json([
             'data' => $indexDataService->getData(),
         ]);
+    }
+
+    /**
+     * @param ViewRepository $viewRepository
+     * @return JsonResponse
+     * @throws Exception
+     */
+    #[Route('/private/data/last')]
+    public function last(ViewRepository $viewRepository): JsonResponse
+    {
+        return $this->json($viewRepository->findLast(7));
     }
 
     /**
