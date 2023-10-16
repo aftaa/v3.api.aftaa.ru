@@ -16,6 +16,7 @@ class DataController extends AbstractController
     /**
      * @param IndexDataService $indexDataService
      * @return JsonResponse
+     * @throws Exception
      */
     #[Route('/private/data/index')]
     public function index(IndexDataService $indexDataService): JsonResponse
