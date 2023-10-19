@@ -30,6 +30,7 @@ final class IndexDataService extends AbstractDataService
 
         return compact('columns', 'top', 'last');
     }
+    
     /**
      * @param array $rows
      * @return array
