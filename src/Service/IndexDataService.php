@@ -2,15 +2,7 @@
 
 namespace App\Service;
 
-use App\Entity\Block;
-use App\Repository\BlockRepository;
-use App\Repository\ViewRepository;
-use App\Service\Trait\BlockToArrayTrait;
-use App\Service\Trait\CreateColumnsTrait;
-use App\Service\Trait\LinkToArrayTrait;
-use App\Service\Trait\SortLinksTrait;
 use Doctrine\DBAL\Exception;
-use Doctrine\ORM\Query\QueryException;
 
 final class IndexDataService extends AbstractDataService
 {

@@ -6,6 +6,7 @@ use App\DTO as DTO;
 use App\Entity\Link;
 use App\Repository\BlockRepository;
 use App\Repository\LinkRepository;
+use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
 use Symfony\Component\Serializer\SerializerInterface;
 
+#[OA\Tag('Links')]
 class LinkController extends AbstractController
 {
     private array $context;

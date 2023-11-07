@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\DTO as DTO;
 use App\Entity\Block;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use OpenApi\Attributes as OA;
 use App\Repository\BlockRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -14,6 +16,7 @@ use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuild
 use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/private/')]
+#[OA\Tag(name: 'Blocks')]
 class BlockController extends AbstractController
 {
     private array $context;
@@ -32,13 +35,41 @@ class BlockController extends AbstractController
         return $this->json($this->serializer->normalize($blocks, null, $this->context));
     }
 
-    #[Route('block/{id}', methods: ['GET'])]
+    #[Route('block/{id}', name: 'Get the block', methods: ['GET'])]
+    #[OA\Parameter(
+        name: 'id',
+        description: 'The block ID',
+        in: 'path',
+        allowEmptyValue: false,
+        schema: new OA\Schema(type: 'int'),
+    )]
+    #[OA\Response(
+        response: 200,
+        description: 'The Block',
+        content: new Model(
+            type: Block::class,
+        )
+    )]
     public function get(Block $block): JsonResponse
     {
         return $this->json($this->serializer->normalize($block, null, $this->context));
     }
 
     #[Route('block/{id}', methods: ['PUT'])]
+    #[OA\Parameter(
+        name: 'id',
+        description: 'The block ID',
+        in: 'path',
+        allowEmptyValue: false,
+        schema: new OA\Schema(type: DTO\Block::class),
+    )]
+    #[OA\Response(
+        response: 200,
+        description: 'The Block',
+        content: new Model(
+            type: Block::class,
+        )
+    )]
     public function put(Block $block, #[MapRequestPayload] DTO\Block $dto, BlockRepository $blockRepository): JsonResponse
     {
         $dto->modifyEntity($block);

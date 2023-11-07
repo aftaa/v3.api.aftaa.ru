@@ -2,12 +2,8 @@
 
 namespace App\Service;
 
-use App\Repository\BlockRepository;
-use App\Repository\ViewRepository;
-use App\Service\Trait\BlockToArrayTrait;
-use App\Service\Trait\CreateColumnsTrait;
-use App\Service\Trait\LinkToArrayTrait;
-use App\Service\Trait\SortLinksTrait;
+use App\Repository\{BlockRepository, ViewRepository};
+use App\Service\Trait\{BlockToArrayTrait, CreateColumnsTrait, LinkToArrayTrait, SortLinksTrait};
 
 abstract class AbstractDataService
 {

@@ -7,10 +7,12 @@ use App\Service\AdminDataService;
 use App\Service\IndexDataService;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\Query\QueryException;
+use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Routing\Annotation\Route;
 
+#[OA\Tag('Data')]
 class DataController extends AbstractController
 {
     /**
@@ -18,7 +20,7 @@ class DataController extends AbstractController
      * @return JsonResponse
      * @throws Exception
      */
-    #[Route('/private/data/index')]
+    #[Route('/private/data/index', methods: ['GET'])]
     public function index(IndexDataService $indexDataService): JsonResponse
     {
         return $this->json([
@@ -31,7 +33,7 @@ class DataController extends AbstractController
      * @return JsonResponse
      * @throws Exception
      */
-    #[Route('/private/data/last')]
+    #[Route('/private/data/last', methods: 'GET')]
     public function last(ViewRepository $viewRepository): JsonResponse
     {
         return $this->json($viewRepository->findLast(7));
@@ -42,7 +44,7 @@ class DataController extends AbstractController
      * @return JsonResponse
      * @throws QueryException
      */
-    #[Route('/private/data/admin')]
+    #[Route('/private/data/admin', methods: ['GET'])]
     public function admin(AdminDataService $adminDataService): JsonResponse
     {
         return $this->json($adminDataService->getData());
