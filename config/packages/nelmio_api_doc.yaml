@@ -1,0 +1,10 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: API V3
+            description: API V3 for new.aftaa.ru
+            version: 1.0.0
+    areas: # to filter documented areas
+        path_patterns:
+            - ^/private # Accepts routes under /api except /api/doc
+            - ^/api(?!/doc$) # Accepts routes under /api except /api/doc
