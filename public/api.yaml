@@ -1,0 +1,262 @@
+openapi: 3.0.0
+info:
+  title: 'API V3'
+  description: 'API V3 for new.aftaa.ru'
+  version: 1.0.0
+paths:
+  /private/block/:
+    get:
+      tags:
+        - Blocks
+      operationId: get_app_block_getall
+      responses:
+        default:
+          description: ''
+    post:
+      tags:
+        - Blocks
+      operationId: post_app_block_post
+      responses:
+        default:
+          description: ''
+  '/private/block/{id}':
+    get:
+      tags:
+        - Blocks
+      operationId: 'get_Get the block'
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'The block ID'
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: int
+      responses:
+        '200':
+          description: 'The Block'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+    put:
+      tags:
+        - Blocks
+      operationId: put_app_block_put
+      parameters:
+        -
+          name: id
+          in: path
+          description: 'The block ID'
+          required: true
+          allowEmptyValue: false
+          schema:
+            type: App\DTO\Block
+      responses:
+        '200':
+          description: 'The Block'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Block'
+    delete:
+      tags:
+        - Blocks
+      operationId: delete_app_block_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    patch:
+      tags:
+        - Blocks
+      operationId: patch_app_block_patch
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /private/data/index:
+    get:
+      tags:
+        - Data
+      operationId: get_app_data_index
+      responses:
+        default:
+          description: ''
+  /private/data/last:
+    get:
+      tags:
+        - Data
+      operationId: get_app_data_last
+      responses:
+        default:
+          description: ''
+  /private/data/admin:
+    get:
+      tags:
+        - Data
+      operationId: get_app_data_admin
+      responses:
+        default:
+          description: ''
+  '/private/link/{id}':
+    get:
+      tags:
+        - Links
+      operationId: get_app_link_get
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    put:
+      tags:
+        - Links
+      operationId: put_app_link_put
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    delete:
+      tags:
+        - Links
+      operationId: delete_app_link_delete
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+    patch:
+      tags:
+        - Links
+      operationId: patch_app_link_patch
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /private/link/:
+    post:
+      tags:
+        - Links
+      operationId: post_app_link_post
+      responses:
+        default:
+          description: ''
+  /private/test:
+    get:
+      tags:
+        - Test
+      operationId: get_app_test_test
+      responses:
+        default:
+          description: ''
+  '/private/view/{id}':
+    get:
+      tags:
+        - Views
+      operationId: get_app_view_view
+      parameters:
+        -
+          name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        default:
+          description: ''
+  /api/doc.json:
+    get:
+      responses:
+        default:
+          description: ''
+components:
+  schemas:
+    Block:
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        col:
+          type: integer
+        sort:
+          type: integer
+        private:
+          type: boolean
+        deleted:
+          type: boolean
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+      type: object
+    Link:
+      properties:
+        id:
+          type: integer
+        block:
+          $ref: '#/components/schemas/Block'
+        name:
+          type: string
+        href:
+          type: string
+        icon:
+          type: string
+        private:
+          type: boolean
+        deleted:
+          type: boolean
+        views:
+          type: array
+          items:
+            $ref: '#/components/schemas/View'
+      type: object
+    View:
+      properties:
+        id:
+          type: integer
+        link:
+          $ref: '#/components/schemas/Link'
+        ip4:
+          type: integer
+        dateTime:
+          type: string
+          format: date-time
+      type: object
+
