@@ -15,27 +15,27 @@ class Block
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('api')]
+    #[Groups(['api', 'block'])]
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups('api')]
+    #[Groups(['api, block'])]
     private ?string $name = null;
 
     #[ORM\Column(type: Types::SMALLINT)]
-    #[Groups('api')]
+    #[Groups(['api', 'block'])]
     private ?int $col = null;
 
     #[ORM\Column]
-    #[Groups('api')]
+    #[Groups(['api', 'block'])]
     private ?int $sort = null;
 
     #[ORM\Column]
-    #[Groups('api')]
+    #[Groups(['api', 'block'])]
     private ?bool $private = null;
 
     #[ORM\Column]
-    #[Groups('api')]
+    #[Groups(['api', 'block'])]
     private ?bool $deleted = null;
 
     #[ORM\OneToMany(mappedBy: 'block', targetEntity: Link::class, cascade: ['persist'], indexBy: 'id')]

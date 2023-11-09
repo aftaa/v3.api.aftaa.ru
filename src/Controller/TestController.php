@@ -2,13 +2,10 @@
 
 namespace App\Controller;
 
-use App\Repository\BlockRepository;
-use App\Repository\LinkRepository;
-use App\Service\DataService;
+use Nelmio\ApiDocBundle\Model\Model;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[OA\Tag('Test')]

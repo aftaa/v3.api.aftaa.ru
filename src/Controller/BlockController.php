@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\DTO as DTO;
 use App\Entity\Block;
 use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Attributes as OA;
 use App\Repository\BlockRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -29,6 +30,19 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Список блоков',
+        content: new OA\JsonContent(
+            type: 'array',
+            items: new OA\Items(
+                ref: new Model(
+                    type: Block::class,
+                    groups: ['block']
+                )
+            )
+        )
+    )]
     public function getAll(BlockRepository $blockRepository): JsonResponse
     {
         $blocks = $blockRepository->findNotDeleted();
@@ -36,19 +50,19 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/{id}', name: 'Get the block', methods: ['GET'])]
-    #[OA\Parameter(
-        name: 'id',
-        description: 'The block ID',
-        in: 'path',
-        allowEmptyValue: false,
-        schema: new OA\Schema(type: 'int'),
+    #[OA\Response(
+        response: Response::HTTP_OK,
+        description: 'Блок',
+        content: new OA\JsonContent(
+            ref: new Model(
+                type: Block::class,
+                groups: ['block']
+            )
+        )
     )]
     #[OA\Response(
-        response: 200,
-        description: 'The Block',
-        content: new Model(
-            type: Block::class,
-        )
+        response: Response::HTTP_NOT_FOUND,
+        description: 'Блок не найден',
     )]
     public function get(Block $block): JsonResponse
     {
@@ -56,19 +70,18 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/{id}', methods: ['PUT'])]
-    #[OA\Parameter(
-        name: 'id',
-        description: 'The block ID',
-        in: 'path',
-        allowEmptyValue: false,
-        schema: new OA\Schema(type: DTO\Block::class),
+    #[OA\RequestBody(
+        content: new Model(
+            type: DTO\Block::class,
+        )
     )]
     #[OA\Response(
-        response: 200,
-        description: 'The Block',
-        content: new Model(
-            type: Block::class,
-        )
+        response: Response::HTTP_NO_CONTENT,
+        description: 'Блок изменен'
+    )]
+    #[OA\Response(
+        response: Response::HTTP_NOT_FOUND,
+        description: 'Блок не найден'
     )]
     public function put(Block $block, #[MapRequestPayload] DTO\Block $dto, BlockRepository $blockRepository): JsonResponse
     {
@@ -78,6 +91,15 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/', methods: ['POST'])]
+    #[OA\RequestBody(
+        content: new Model(
+            type: DTO\Block::class,
+        )
+    )]
+    #[OA\Response(
+        response: Response::HTTP_CREATED,
+        description: 'Блок добавлен'
+    )]
     public function post(#[MapRequestPayload] DTO\Block $dto, BlockRepository $blockRepository): JsonResponse
     {
         $block = new Block();
@@ -88,6 +110,15 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/{id}', methods: ['DELETE'])]
+    #[OA\Response(
+        response: Response::HTTP_CREATED,
+        description: 'Блок удален'
+    )]
+    #[OA\Response(
+        response: Response::HTTP_NOT_FOUND,
+        description: 'Блок не найден'
+    )]
+
     public function delete(Block $block, BlockRepository $blockRepository): JsonResponse
     {
         $block->setDeleted(true);
@@ -96,6 +127,14 @@ class BlockController extends AbstractController
     }
 
     #[Route('block/{id}', methods: ['PATCH'])]
+    #[OA\Response(
+        response: Response::HTTP_NO_CONTENT,
+        description: 'Блок восстановлен'
+    )]
+    #[OA\Response(
+        response: Response::HTTP_NOT_FOUND,
+        description: 'Блок не найден'
+    )]
     public function patch(Block $block, BlockRepository $blockRepository): JsonResponse
     {
         $block->setDeleted(false);
