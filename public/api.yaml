@@ -10,15 +10,26 @@ paths:
         - Blocks
       operationId: get_app_block_getall
       responses:
-        default:
-          description: ''
+        '200':
+          description: 'Список блоков'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Block'
     post:
       tags:
         - Blocks
       operationId: post_app_block_post
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Block2'
       responses:
-        default:
-          description: ''
+        '201':
+          description: 'Блок добавлен'
   '/private/block/{id}':
     get:
       tags:
@@ -28,18 +39,18 @@ paths:
         -
           name: id
           in: path
-          description: 'The block ID'
           required: true
-          allowEmptyValue: false
           schema:
-            type: int
+            type: string
       responses:
         '200':
-          description: 'The Block'
+          description: Блок
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Block'
+        '404':
+          description: 'Блок не найден'
     put:
       tags:
         - Blocks
@@ -48,18 +59,19 @@ paths:
         -
           name: id
           in: path
-          description: 'The block ID'
           required: true
-          allowEmptyValue: false
           schema:
-            type: App\DTO\Block
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Block2'
       responses:
-        '200':
-          description: 'The Block'
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Block'
+        '204':
+          description: 'Блок изменен'
+        '404':
+          description: 'Блок не найден'
     delete:
       tags:
         - Blocks
@@ -72,8 +84,10 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '201':
+          description: 'Блок удален'
+        '404':
+          description: 'Блок не найден'
     patch:
       tags:
         - Blocks
@@ -86,8 +100,10 @@ paths:
           schema:
             type: string
       responses:
-        default:
-          description: ''
+        '204':
+          description: 'Блок восстановлен'
+        '404':
+          description: 'Блок не найден'
   /private/data/index:
     get:
       tags:
@@ -211,8 +227,6 @@ components:
       properties:
         id:
           type: integer
-        name:
-          type: string
         col:
           type: integer
         sort:
@@ -221,42 +235,16 @@ components:
           type: boolean
         deleted:
           type: boolean
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
       type: object
-    Link:
+    Block2:
       properties:
-        id:
-          type: integer
-        block:
-          $ref: '#/components/schemas/Block'
         name:
           type: string
-        href:
-          type: string
-        icon:
-          type: string
+        col:
+          type: integer
+        sort:
+          type: integer
         private:
           type: boolean
-        deleted:
-          type: boolean
-        views:
-          type: array
-          items:
-            $ref: '#/components/schemas/View'
-      type: object
-    View:
-      properties:
-        id:
-          type: integer
-        link:
-          $ref: '#/components/schemas/Link'
-        ip4:
-          type: integer
-        dateTime:
-          type: string
-          format: date-time
       type: object
 
