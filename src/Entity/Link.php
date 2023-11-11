@@ -14,32 +14,32 @@ class Link
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
-    #[Groups('api', 'link')]
+    #[Groups(['api', 'link'])]
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'links')]
     #[ORM\JoinColumn(nullable: false)]
-    #[Groups('api', 'link')]
+    #[Groups(['api', 'link'])]
     private ?Block $block = null;
 
     #[ORM\Column(length: 50)]
-    #[Groups('api', 'link')]
+    #[Groups(['api', 'link'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 150)]
-    #[Groups('api', 'link')]
+    #[Groups(['api', 'link'])]
     private ?string $href = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups('api', 'link')]
+    #[Groups(['api', 'link'])]
     private ?string $icon = null;
 
     #[ORM\Column]
-    #[Groups('api', 'link')]
+    #[Groups(['api', 'link'])]
     private ?bool $private = null;
 
     #[ORM\Column]
-    #[Groups('api', 'link')]
+    #[Groups(['api', 'link'])]
     private ?bool $deleted = null;
 
     #[ORM\OneToMany(mappedBy: 'link', targetEntity: View::class, cascade: ['persist'], indexBy: 'id')]

@@ -3,9 +3,12 @@
 namespace App\Controller;
 
 use App\DTO as DTO;
+use App\Entity\Block;
 use App\Entity\Link;
 use App\Repository\BlockRepository;
 use App\Repository\LinkRepository;
+use Nelmio\ApiDocBundle\Annotation\Model;
+use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -15,7 +18,10 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuilder;
 use Symfony\Component\Serializer\SerializerInterface;
 
-#[OA\Tag('Links')]
+#[OA\Tag(name: 'Links')]
+#[Security(name: 'Bearer')]
+#[OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'JWT токен не передан или не верен')]
+#[OA\Response(response: Response::HTTP_INTERNAL_SERVER_ERROR, description: 'Внутренняя ошибка сервера')]
 class LinkController extends AbstractController
 {
     private array $context;
@@ -30,12 +36,19 @@ class LinkController extends AbstractController
     }
 
     #[Route('/private/link/{id}', methods: ['GET'])]
+    #[OA\Response(response: Response::HTTP_OK, description: 'Link', content: new OA\JsonContent(
+        ref: new Model(type: Link::class, groups: ['link'])))]
+    #[OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Not Found')]
     public function get(Link $link): JsonResponse
     {
         return $this->json($this->serializer->normalize($link, null, $this->context));
     }
 
     #[Route('/private/link/{id}', methods: ['PUT'])]
+    #[OA\RequestBody(content: new Model(type: DTO\Link::class))]
+    #[OA\Response(response: Response::HTTP_NO_CONTENT, description: 'Блок изменен')]
+    #[OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Блок не найден')]
+    #[OA\Response(response: Response::HTTP_UNPROCESSABLE_ENTITY, description: 'Неверные входные данные')]
     public function put(Link $link, #[MapRequestPayload] DTO\Link $dto): JsonResponse
     {
         $dto->modifyEntity($link, ['block_id']);
@@ -45,6 +58,9 @@ class LinkController extends AbstractController
     }
 
     #[Route('/private/link/', methods: ['POST'])]
+    #[OA\RequestBody(content: new Model(type: DTO\Link::class))]
+    #[OA\Response(response: Response::HTTP_CREATED, description: 'Блок добавлен')]
+    #[OA\Response(response: Response::HTTP_UNPROCESSABLE_ENTITY, description: 'Неверные входные данные')]
     public function post(#[MapRequestPayload] DTO\Link $dto): JsonResponse
     {
         $link = new Link();
@@ -56,6 +72,8 @@ class LinkController extends AbstractController
     }
 
     #[Route('/private/link/{id}', methods: ['DELETE'])]
+    #[OA\Response(response: Response::HTTP_CREATED, description: 'Блок удален')]
+    #[OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Блок не найден')]
     public function delete(Link $link): JsonResponse
     {
         $link->setDeleted(true);
@@ -64,6 +82,8 @@ class LinkController extends AbstractController
     }
 
     #[Route('/private/link/{id}', methods: ['PATCH'])]
+    #[OA\Response(response: Response::HTTP_NO_CONTENT, description: 'Блок восстановлен')]
+    #[OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Блок не найден')]
     public function patch(Link $link): JsonResponse
     {
         $link->setDeleted(false);

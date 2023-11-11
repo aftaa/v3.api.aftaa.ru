@@ -7,12 +7,16 @@ use App\Service\AdminDataService;
 use App\Service\IndexDataService;
 use Doctrine\DBAL\Exception;
 use Doctrine\ORM\Query\QueryException;
+use Nelmio\ApiDocBundle\Annotation\Security;
 use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 #[OA\Tag('Data')]
+#[Security(name: 'Bearer')]
+#[OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'JWT токен не передан или не верен')]
 class DataController extends AbstractController
 {
     /**

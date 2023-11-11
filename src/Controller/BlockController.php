@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 #[Route('/private/')]
 #[OA\Tag(name: 'Blocks')]
 #[Security(name: 'Bearer')]
-#[OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'JWT токен не передан')]
+#[OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'JWT токен не передан или не верен')]
 #[OA\Response(response: Response::HTTP_INTERNAL_SERVER_ERROR, description: 'Внутренняя ошибка сервера')]
 class BlockController extends AbstractController
 {
@@ -46,7 +46,7 @@ class BlockController extends AbstractController
         return $this->json($this->serializer->normalize($blocks, null, $this->context));
     }
 
-    #[Route('block/{id}', name: 'Get the block', methods: ['GET'])]
+    #[Route('block/{id}', methods: ['GET'])]
     #[OA\Response(response: Response::HTTP_OK, description: 'Блок', content: new OA\JsonContent(
             ref: new Model(type: Block::class, groups: ['block'])))]
     #[OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Блок не найден')]
