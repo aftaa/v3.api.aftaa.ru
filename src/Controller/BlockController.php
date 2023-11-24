@@ -17,7 +17,7 @@ use Symfony\Component\Serializer\Context\Normalizer\ObjectNormalizerContextBuild
 use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/private/')]
-#[OA\Tag(name: 'Blocks')]
+#[OA\Tag(name: 'Блоки')]
 #[Security(name: 'Bearer')]
 #[OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'JWT токен не передан или не верен')]
 #[OA\Response(response: Response::HTTP_INTERNAL_SERVER_ERROR, description: 'Внутренняя ошибка сервера')]

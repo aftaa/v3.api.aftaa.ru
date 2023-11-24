@@ -15,8 +15,8 @@ nelmio_api_doc:
             /login_check:
                 post:
                     tags:
-                        - Login
-                    description: Login into api, use username test@test.ru and password test
+                        - Авторизация
+                    description: Используйте логин test@test.ru и пароль test
                     requestBody:
                         description: Json body
                         required: true

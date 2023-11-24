@@ -29,6 +29,16 @@ class ViewController extends AbstractController
      * @throws NonUniqueResultException
      */
     #[Route('/private/view/{id}', methods: ['GET'])]
+    #[OA\Response(
+        response: 200,
+        description: 'Количество просмотров',
+        content: new OA\JsonContent(
+            properties: [
+                new OA\Property(property: "views", type: "integer")
+            ],
+            type: 'object',
+        )
+    )]
     public function view(Link $link, ViewRepository $viewRepository, Request $request): JsonResponse
     {
         $view = new View();
