@@ -2,6 +2,8 @@
 
 namespace App\Service\Trait;
 
+use App\Entity\Link;
+
 trait CreateColumnsTrait
 {
     /**
@@ -9,7 +11,7 @@ trait CreateColumnsTrait
      * @param bool $skipEmptyBlocks
      * @return array
      */
-    protected function createColumns(array $blocks, bool $skipEmptyBlocks): array
+    protected function createColumns(array $blocks, bool $skipEmptyBlocks, bool $skipPrivate = false): array
     {
         $columns = [];
         foreach ($blocks as $block) {
@@ -19,7 +21,11 @@ trait CreateColumnsTrait
             $links = $block->getLinks();
             $arr = [];
             foreach ($links as $link) {
+                /** @var $link Link */
                 if ($link->isDeleted()) {
+                    continue;
+                }
+                if ($link->isPrivate() && $skipPrivate) {
                     continue;
                 }
                 $link = $this->linkToArray($link);

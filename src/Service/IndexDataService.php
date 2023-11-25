@@ -9,7 +9,7 @@ final class IndexDataService extends AbstractDataService
     public function getPublicData(): array
     {
         $publicData = $this->blockRepository->findPublicData();
-        $publicData = $this->createColumns($publicData, true);
+        $publicData = $this->createColumns($publicData, true, true);
         return $publicData;
     }
     /**
