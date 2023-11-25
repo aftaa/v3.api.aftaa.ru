@@ -17,7 +17,7 @@ final class AdminDataService extends AbstractDataService
      * @return array
      * @throws QueryException
      */
-    public function getData(): array
+    public function getPrivateData(): array
     {
         $blocks = $this->blockRepository->findNotDeletedOrdered();
         $columns = $this->createColumns($blocks, skipEmptyBlocks: false);

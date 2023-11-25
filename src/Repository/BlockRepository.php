@@ -71,4 +71,13 @@ class BlockRepository extends ServiceEntityRepository
             ->orderBy('b.name', 'ASC');
         return $qb->getQuery()->getResult(AbstractQuery::HYDRATE_ARRAY);
     }
+
+    public function findPublicData()
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->where('b.deleted=FALSE')
+            ->andWhere('b.private=FALSE')
+            ->orderBy('b.name', 'ASC');
+        return $qb->getQuery()->getResult();
+    }
 }

@@ -19,16 +19,21 @@ use Symfony\Component\Routing\Annotation\Route;
 #[OA\Response(response: Response::HTTP_UNAUTHORIZED, description: 'JWT токен не передан или не верен')]
 class DataController extends AbstractController
 {
+    #[Route('/public/data/index', methods: ['GET'])]
+    public function index(IndexDataService $indexDataService): JsonResponse
+    {
+        return $this->json($indexDataService->getPublicData());
+    }
     /**
      * @param IndexDataService $indexDataService
      * @return JsonResponse
      * @throws Exception
      */
     #[Route('/private/data/index', methods: ['GET'])]
-    public function index(IndexDataService $indexDataService): JsonResponse
+    public function private(IndexDataService $indexDataService): JsonResponse
     {
         return $this->json([
-            'data' => $indexDataService->getData(),
+            'data' => $indexDataService->getPrivateData(),
         ]);
     }
 
@@ -51,6 +56,6 @@ class DataController extends AbstractController
     #[Route('/private/data/admin', methods: ['GET'])]
     public function admin(AdminDataService $adminDataService): JsonResponse
     {
-        return $this->json($adminDataService->getData());
+        return $this->json($adminDataService->getPrivateData());
     }
 }

@@ -6,11 +6,17 @@ use Doctrine\DBAL\Exception;
 
 final class IndexDataService extends AbstractDataService
 {
+    public function getPublicData(): array
+    {
+        $publicData = $this->blockRepository->findPublicData();
+        $publicData = $this->createColumns($publicData, true);
+        return $publicData;
+    }
     /**
      * @return array
      * @throws Exception
      */
-    public function getData(): array
+    public function getPrivateData(): array
     {
         $blocks = $this->blockRepository->findNotDeletedOrdered();
         $columns = $this->createColumns(blocks: $blocks, skipEmptyBlocks: true);

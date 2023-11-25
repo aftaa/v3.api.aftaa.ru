@@ -19,5 +19,5 @@ abstract class AbstractDataService
     {
     }
 
-    abstract public function getData(): array;
+    abstract public function getPrivateData(): array;
 }
