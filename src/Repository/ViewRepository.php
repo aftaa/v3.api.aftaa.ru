@@ -67,27 +67,21 @@ class ViewRepository extends ServiceEntityRepository
     /**
      * @param int $limit
      * @return array
-     * @throws Exception
      */
     public function findLast(int $limit = 42): array
     {
-        $limit = (int)$limit;
-        $sql = "
-            SELECT DISTINCT l.name, l.href, l.icon, l.id, v.date_time FROM view v
-                INNER JOIN link l ON l.id=link_id
-                INNER JOIN block b ON b.id=block_id
-            WHERE l.deleted=FALSE AND b.deleted=FALSE
-            -- GROUP BY l.id
-            ORDER BY v.date_time DESC
-            LIMIT $limit
-        ";
-        $conn = $this->getEntityManager()->getConnection();
-        return $conn->executeQuery($sql)->fetchAllAssociative();
+        return $this->createQueryBuilder('v')
+            ->innerJoin(Link::class, 'l', 'WITH', 'l=v.link')
+            ->innerJoin(Block::class, 'b', 'WITH', 'b=l.block')
+            ->select('l.name, l.href, l.icon, l.id, v.date_time')
+            ->where('l.deleted=FALSE')->andWhere('b.deleted=FALSE')
+            ->orderBy('v.date_time')
+            ->setMaxResults($limit)
+            ->getQuery()->execute();
     }
 
     /**
      * @return array
-     * @throws QueryException
      */
     public function getTotalViews(): array
     {
