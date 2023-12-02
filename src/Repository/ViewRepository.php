@@ -68,7 +68,7 @@ class ViewRepository extends ServiceEntityRepository
      * @param int $limit
      * @return array
      */
-    public function findLast(int $limit = 42): array
+    public function findRecent(int $limit = 42): array
     {
         return $this->createQueryBuilder('v')
             ->innerJoin(Link::class, 'l', 'WITH', 'l=v.link')

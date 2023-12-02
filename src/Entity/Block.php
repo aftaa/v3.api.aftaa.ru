@@ -140,4 +140,17 @@ class Block
 
         return $this;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'col' => $this->getCol(),
+            'sort' => $this->getSort(),
+            'deleted' => $this->isDeleted(),
+            'private' => $this->isPrivate(),
+            'links' => [],
+        ];
+    }
 }

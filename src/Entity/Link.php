@@ -156,4 +156,16 @@ class Link
 
         return $this;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'href' => $this->getHref(),
+            'icon' => $this->getIcon(),
+            'private' => $this->isPrivate(),
+            'deleted' => $this->isDeleted(),
+        ];
+    }
 }

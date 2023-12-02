@@ -13,7 +13,6 @@ final class IndexDataService extends AbstractDataService
     }
     /**
      * @return array
-     * @throws Exception
      */
     public function getPrivateData(): array
     {
@@ -23,7 +22,7 @@ final class IndexDataService extends AbstractDataService
         $top = $this->viewRepository->findTop(17);
         $top = $this->createTop($top);
 
-        $last = $this->viewRepository->findLast(7);
+        $last = $this->viewRepository->findRecent(7);
 
         return compact('columns', 'top', 'last');
     }

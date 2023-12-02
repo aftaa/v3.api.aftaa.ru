@@ -40,12 +40,11 @@ class DataController extends AbstractController
     /**
      * @param ViewRepository $viewRepository
      * @return JsonResponse
-     * @throws Exception
      */
     #[Route('/private/data/last', methods: 'GET')]
     public function last(ViewRepository $viewRepository): JsonResponse
     {
-        return $this->json($viewRepository->findLast(7));
+        return $this->json($viewRepository->findRecent(7));
     }
 
     /**

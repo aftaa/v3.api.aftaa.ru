@@ -15,7 +15,6 @@ final class AdminDataService extends AbstractDataService
 {
     /**
      * @return array
-     * @throws QueryException
      */
     public function getPrivateData(): array
     {
@@ -39,10 +38,10 @@ final class AdminDataService extends AbstractDataService
     {
         $result = [];
         foreach ($blocks as $block) {
-            $resultBlock = $this->blockToArray($block);
+            $resultBlock = $block->toArray();
             foreach ($block->getLinks() as $link) {
                 if ($link->isDeleted()) {
-                    $resultBlock['links'][$link->getId()] = $this->linkToArray($link);
+                    $resultBlock['links'][$link->getId()] = $link->toArray();
                 }
             }
             $result[$block->getCol()][$block->getId()] = $resultBlock;
