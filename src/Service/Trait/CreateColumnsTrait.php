@@ -16,12 +16,11 @@ trait CreateColumnsTrait
     {
         $columns = [];
         foreach ($blocks as $block) {
-            if (!count($block->getLinks()) && $skipEmptyBlocks) {
+            if ($skipEmptyBlocks && !count($block->getLinks())) {
                 continue;
             }
-            $links = $block->getLinks();
-            $arr = [];
-            foreach ($links as $link) {
+            $links = [];
+            foreach ($block->getLinks() as $link) {
                 if ($link->isDeleted()) {
                     continue;
                 }
@@ -30,11 +29,11 @@ trait CreateColumnsTrait
                     continue;
                 }
 
-                $arr[$link->getId()] = $link->toArray();
+                $links[$link->getId()] = $link->toArray();
             }
-            $this->sortLinks($arr);
+            $this->sortLinks($links);
             $block = $block->toArray();
-            $block['links'] = $arr;
+            $block['links'] = $links;
             $columns[$block['col']][] = $block;
         }
         return $columns;
