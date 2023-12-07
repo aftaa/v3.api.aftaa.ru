@@ -6,7 +6,7 @@ services:
     ports:
       - "49003:80"
     volumes:
-      - .:/var/www/v3.api.aftaa.ru
+      - .:/var/www/api.aftaa.ru
       - ./docker/nginx/hosts:/etc/nginx/conf.d
       - ./docker/nginx/logs:/var/log/nginx
     restart: always
@@ -16,7 +16,7 @@ services:
   php:
     build: docker/php
     volumes:
-      - .:/var/www/v3.api.aftaa.ru
+      - .:/var/www/api.aftaa.ru
     restart: always
     links:
       - mysql
