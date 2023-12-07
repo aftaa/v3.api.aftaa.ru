@@ -1,4 +1,4 @@
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 RUN apt-get -y update
 RUN apt-get install -y libicu-dev
 RUN docker-php-ext-configure intl
