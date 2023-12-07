@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6afbe0a1-980b-4a51-830a-7ba97c77cea2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/src/Service/Trait/CreateColumnsTrait.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Service/Trait/CreateColumnsTrait.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,6 +211,7 @@
       <workItem from="1700846291494" duration="701000" />
       <workItem from="1700881736981" duration="3747000" />
       <workItem from="1701468509494" duration="7543000" />
+      <workItem from="1701817683674" duration="2928000" />
     </task>
     <servers />
   </component>
