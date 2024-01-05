@@ -1,30 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataSource name="a@vps-01.data-files.ru">
-  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.49">
-    <root id="1">
-      <DefaultCasing>exact</DefaultCasing>
-      <DefaultEngine>InnoDB</DefaultEngine>
-      <DefaultTmpEngine>InnoDB</DefaultTmpEngine>
-      <Grants>a|schema||a||ALTER|G
-a|schema||a||ALTER ROUTINE|G
-a|schema||a||CREATE|G
-a|schema||a||CREATE ROUTINE|G
-a|schema||a||CREATE TEMPORARY TABLES|G
-a|schema||a||CREATE VIEW|G
-a|schema||a||DELETE|G
-a|schema||a||DROP|G
-a|schema||a||EVENT|G
-a|schema||a||EXECUTE|G
-a|schema||a||INDEX|G
-a|schema||a||INSERT|G
-a|schema||a||LOCK TABLES|G
-a|schema||a||REFERENCES|G
-a|schema||a||SELECT|G
-a|schema||a||SHOW VIEW|G
-a|schema||a||TRIGGER|G
-a|schema||a||UPDATE|G</Grants>
-      <ServerVersion>8.0.34</ServerVersion>
-    </root>
+  <database-model serializer="dbm" dbms="MYSQL" family-id="MYSQL" format-version="4.51">
+    <root id="1"/>
     <collation id="2" parent="1" name="armscii8_general_ci">
       <Charset>armscii8</Charset>
       <DefaultForCharset>1</DefaultForCharset>
@@ -932,8 +909,7 @@ a|schema||a||UPDATE|G</Grants>
     </schema>
     <schema id="290" parent="1" name="a">
       <Current>1</Current>
-      <IntrospectionTimestamp>2023-09-30.10:02:04</IntrospectionTimestamp>
-      <LocalIntrospectionTimestamp>2023-09-30.07:02:04</LocalIntrospectionTimestamp>
+      <LastIntrospectionLocalTimestamp>2023-09-30.07:02:04</LastIntrospectionLocalTimestamp>
       <CollationName>utf8mb4_0900_ai_ci</CollationName>
     </schema>
     <user id="291" parent="1" name="a"/>
