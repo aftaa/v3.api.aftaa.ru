@@ -9,6 +9,9 @@
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c95d2e0-55f2-49c0-83af-25949f72750f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9c95d2e0-55f2-49c0-83af-25949f72750f.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0865e13-114c-4760-9b93-2231a207d38b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f0865e13-114c-4760-9b93-2231a207d38b.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -147,7 +150,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/http-client-contracts" />
       <path value="$PROJECT_DIR$/vendor/dama/doctrine-test-bundle" />
       <path value="$PROJECT_DIR$/vendor/zircote/swagger-php" />
-      <path value="$PROJECT_DIR$/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/vendor/symfony/options-resolver" />
       <path value="$PROJECT_DIR$/vendor/nelmio/api-doc-bundle" />
     </include_path>
@@ -193,7 +195,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-php-predefined-ba97393d7c68-74080bdb84d3-com.jetbrains.php.sharedIndexes-PS-233.11799.232" />
+        <option value="bundled-php-predefined-ba97393d7c68-b4dcf6bb9de9-com.jetbrains.php.sharedIndexes-PS-233.13135.108" />
       </set>
     </attachedChunks>
   </component>
@@ -224,6 +226,7 @@
       <workItem from="1701817683674" duration="2928000" />
       <workItem from="1701991877711" duration="1747000" />
       <workItem from="1702228862483" duration="3142000" />
+      <workItem from="1704426403830" duration="1048000" />
     </task>
     <servers />
   </component>
