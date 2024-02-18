@@ -73,9 +73,10 @@ class ViewRepository extends ServiceEntityRepository
         return $this->createQueryBuilder('v')
             ->innerJoin(Link::class, 'l', 'WITH', 'l=v.link')
             ->innerJoin(Block::class, 'b', 'WITH', 'b=l.block')
-            ->select('l.name, l.href, l.icon, l.id, v.date_time')
+            ->select('l.name, l.href, l.icon, l.id, MAX(v.date_time) AS date_time')
             ->where('l.deleted=FALSE')->andWhere('b.deleted=FALSE')
-            ->orderBy('v.date_time', 'DESC')
+            ->groupBy('l.id')
+            ->orderBy('date_time', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()->execute();
     }

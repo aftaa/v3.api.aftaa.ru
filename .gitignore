@@ -1,3 +1,5 @@
+/.idea
+
 /docker/mysql
 /docker/nginx/logs
 
