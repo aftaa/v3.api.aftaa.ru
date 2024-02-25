@@ -5,6 +5,7 @@ namespace App\Repository;
 use App\Entity\Block;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\ORM\AbstractQuery;
+use Doctrine\ORM\Query\QueryException;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -79,5 +80,20 @@ class BlockRepository extends ServiceEntityRepository
             ->andWhere('b.private=FALSE')
             ->orderBy('b.name', 'ASC');
         return $qb->getQuery()->getResult();
+    }
+
+    /**
+     * @return string[]
+     * @throws QueryException
+     */
+    public function findBlocksOnly(): array
+    {
+        $qb = $this->createQueryBuilder('b')
+            ->select('b.name')
+            ->where('b.deleted=FALSE')
+            ->orderBy('b.col', 'ASC')
+            ->addOrderBy('b.name', 'ASC')
+            ->indexBy('b', 'b.id');
+        return $qb->getQuery()->getSingleColumnResult();
     }
 }

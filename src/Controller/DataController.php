@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\BlockRepository;
 use App\Repository\ViewRepository;
 use App\Service\AdminDataService;
 use App\Service\IndexDataService;
@@ -56,5 +57,11 @@ class DataController extends AbstractController
     public function admin(AdminDataService $adminDataService): JsonResponse
     {
         return $this->json($adminDataService->getPrivateData());
+    }
+
+    #[Route('/public/blocks', methods: ['GET'])]
+    public function blocks(BlockRepository $blockRepository)
+    {
+        return $this->json($blockRepository->findBlocksOnly());
     }
 }
