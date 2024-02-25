@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6afbe0a1-980b-4a51-830a-7ba97c77cea2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/phpspec.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/phpspec.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/v3.api.aftaa.ru.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/v3.api.aftaa.ru.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ViewRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/ViewRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/DataController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/DataController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/BlockRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/BlockRepository.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -166,6 +164,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
     &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
@@ -226,6 +225,9 @@
       <workItem from="1702228862483" duration="3142000" />
       <workItem from="1704426403830" duration="1048000" />
       <workItem from="1708269995600" duration="2792000" />
+      <workItem from="1708273035334" duration="2396000" />
+      <workItem from="1708278319359" duration="9000" />
+      <workItem from="1708827498591" duration="362000" />
     </task>
     <servers />
   </component>
