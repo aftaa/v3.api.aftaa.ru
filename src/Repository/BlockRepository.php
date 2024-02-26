@@ -83,17 +83,15 @@ class BlockRepository extends ServiceEntityRepository
     }
 
     /**
-     * @return string[]
-     * @throws QueryException
+     * @return Block[]
      */
     public function findBlocksOnly(): array
     {
         $qb = $this->createQueryBuilder('b')
-            ->select('b.name')
+            ->select('b.name, b.id')
             ->where('b.deleted=FALSE')
             ->orderBy('b.col', 'ASC')
-            ->addOrderBy('b.name', 'ASC')
-            ->indexBy('b', 'b.id');
-        return $qb->getQuery()->getSingleColumnResult();
+            ->addOrderBy('b.name', 'ASC');
+        return $qb->getQuery()->getResult();
     }
 }
