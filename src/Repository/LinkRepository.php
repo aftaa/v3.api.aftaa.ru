@@ -38,4 +38,21 @@ class LinkRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+
+    /**
+     * @param int $blockId
+     * @return Link[]
+     */
+    public function findLinksByBlockId(int $blockId): array
+    {
+        return $this->createQueryBuilder('l')
+            ->select('l.name, l.id, l.href')
+            ->join('l.block', 'b')
+            ->where('l.block=:block_id')
+            ->andWhere('l.deleted=FALSE AND b.deleted=FALSE')
+            ->setParameter('block_id', $blockId)
+            ->orderBy('l.name', 'ASC')
+            ->getQuery()
+            ->getResult();
+    }
 }

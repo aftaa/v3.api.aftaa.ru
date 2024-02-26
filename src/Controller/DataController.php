@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Repository\BlockRepository;
+use App\Repository\LinkRepository;
 use App\Repository\ViewRepository;
 use App\Service\AdminDataService;
 use App\Service\IndexDataService;
@@ -63,5 +64,11 @@ class DataController extends AbstractController
     public function blocks(BlockRepository $blockRepository)
     {
         return $this->json($blockRepository->findBlocksOnly());
+    }
+
+    #[Route('/public/links/{blockId}', methods: ['GET'])]
+    public function links(int $blockId, LinkRepository $linkRepository)
+    {
+        return $this->json($linkRepository->findLinksByBlockId($blockId));
     }
 }
