@@ -14,7 +14,7 @@ use OpenApi\Attributes as OA;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Routing\Attribute\Route;
 
 #[OA\Tag('Data')]
 #[Security(name: 'Bearer')]
@@ -26,10 +26,10 @@ class DataController extends AbstractController
     {
         return $this->json($indexDataService->getPublicData());
     }
+
     /**
      * @param IndexDataService $indexDataService
      * @return JsonResponse
-     * @throws Exception
      */
     #[Route('/private/data/index', methods: ['GET'])]
     public function private(IndexDataService $indexDataService): JsonResponse
@@ -61,13 +61,13 @@ class DataController extends AbstractController
     }
 
     #[Route('/public/blocks', methods: ['GET'])]
-    public function blocks(BlockRepository $blockRepository)
+    public function blocks(BlockRepository $blockRepository): JsonResponse
     {
         return $this->json($blockRepository->findBlocksOnly());
     }
 
     #[Route('/public/links/{blockId}', methods: ['GET'])]
-    public function links(int $blockId, LinkRepository $linkRepository)
+    public function links(int $blockId, LinkRepository $linkRepository): JsonResponse
     {
         return $this->json($linkRepository->findLinksByBlockId($blockId));
     }
