@@ -1,4 +1,4 @@
-FROM php:8.4-fpm
+FROM php:8.5-fpm
 
 WORKDIR /var/www/api.aftaa.ru
 
@@ -8,14 +8,13 @@ RUN set -exv; \
     libzip-dev \
     libicu-dev
 
-RUN docker-php-ext-install opcache \
-    && docker-php-ext-configure intl \
+RUN docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && docker-php-ext-configure zip \
     && docker-php-ext-install zip \
     && docker-php-ext-install pdo_mysql
 
 RUN set -exv; \
-    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --version=2.8.4 --filename=composer
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 CMD ["php-fpm"]
