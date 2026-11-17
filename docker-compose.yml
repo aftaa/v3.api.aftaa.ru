@@ -20,7 +20,7 @@ services:
       - mysql
 
   mysql:
-    image: mysql:8.0.34
+    image: mysql:9.7.4
     ports:
       - "49004:3306"
     volumes:
