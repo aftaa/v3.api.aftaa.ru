@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6afbe0a1-980b-4a51-830a-7ba97c77cea2" name="Changes" comment="" />
+    <list default="true" id="6afbe0a1-980b-4a51-830a-7ba97c77cea2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/v3.api.aftaa.ru.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api.aftaa.ru.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,7 +28,15 @@
                     <execution>
                       <execution>
                         <execution>
-                          <execution />
+                          <execution>
+                            <execution>
+                              <execution>
+                                <execution>
+                                  <execution />
+                                </execution>
+                              </execution>
+                            </execution>
+                          </execution>
                         </execution>
                       </execution>
                     </execution>
@@ -176,7 +189,6 @@
       <path value="$PROJECT_DIR$/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/vendor/symfony/monolog-bridge" />
       <path value="$PROJECT_DIR$/vendor/symfony/monolog-bundle" />
-      <path value="$PROJECT_DIR$/vendor/theseer/tokenizer" />
       <path value="$PROJECT_DIR$/vendor/myclabs/deep-copy" />
       <path value="$PROJECT_DIR$/vendor/sebastian/object-reflector" />
       <path value="$PROJECT_DIR$/vendor/sebastian/cli-parser" />
@@ -334,6 +346,10 @@
       <workItem from="1794880358697" duration="681000" />
       <workItem from="1794881178431" duration="802000" />
       <workItem from="1794911308310" duration="59000" />
+      <workItem from="1794911380960" duration="617000" />
+      <workItem from="1794921007354" duration="295000" />
+      <workItem from="1794937429263" duration="37000" />
+      <workItem from="1794937502070" duration="2622000" />
     </task>
     <servers />
   </component>

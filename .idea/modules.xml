@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/v3.api.aftaa.ru.iml" filepath="$PROJECT_DIR$/.idea/v3.api.aftaa.ru.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/api.aftaa.ru.iml" filepath="$PROJECT_DIR$/.idea/api.aftaa.ru.iml" />
     </modules>
   </component>
 </project>
