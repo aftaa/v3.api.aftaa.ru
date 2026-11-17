@@ -5,15 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="6afbe0a1-980b-4a51-830a-7ba97c77cea2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c95d2e0-55f2-49c0-83af-25949f72750f.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/9c95d2e0-55f2-49c0-83af-25949f72750f.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0865e13-114c-4760-9b93-2231a207d38b.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/f0865e13-114c-4760-9b93-2231a207d38b.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/routes/framework.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes/framework.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c95d2e0-55f2-49c0-83af-25949f72750f.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c95d2e0-55f2-49c0-83af-25949f72750f/storage_v2/_src_/schema/a_test.sBH3qg.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c95d2e0-55f2-49c0-83af-25949f72750f/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/9c95d2e0-55f2-49c0-83af-25949f72750f/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/data_sources_history.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0865e13-114c-4760-9b93-2231a207d38b.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0865e13-114c-4760-9b93-2231a207d38b/storage_v2/_src_/schema/a.YQAAAA.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0865e13-114c-4760-9b93-2231a207d38b/storage_v2/_src_/schema/information_schema.FNRwLQ.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/f0865e13-114c-4760-9b93-2231a207d38b/storage_v2/_src_/schema/performance_schema.kIw0nw.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/db-forest-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/db-forest-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker/php/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/docker/php/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,14 +28,97 @@
   <component name="ComposerSettings" notifyAboutMissingVendor="false" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
     <execution>
-      <execution />
+      <execution>
+        <execution>
+          <execution>
+            <execution>
+              <execution>
+                <execution>
+                  <execution>
+                    <execution>
+                      <execution>
+                        <execution />
+                      </execution>
+                    </execution>
+                  </execution>
+                </execution>
+              </execution>
+            </execution>
+          </execution>
+        </execution>
+      </execution>
     </execution>
+  </component>
+  <component name="DatabaseLocalColorSettings">
+    <colors>
+      <entry key="3e0bcec4-cc33-400d-9c02-cfe4a3ce3b37" value="" />
+      <entry key="ab48146d-f7d4-412c-a053-76e77ab96bfc" value="" />
+    </colors>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/config/packages/security.yaml" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="NextEditCompletionFeaturesState">
+    <decayedCancelled>
+      <entry key="MS100" value="1.2534589518698406E-29" />
+      <entry key="MS500" value="1.6584552210506068E-6" />
+      <entry key="S2" value="0.04238558328963506" />
+      <entry key="S5" value="0.509826686699849" />
+      <entry key="S10" value="1.3656493751172751" />
+      <entry key="S30" value="2.769360471199415" />
+      <entry key="S60" value="3.3245151989983404" />
+      <entry key="M2" value="3.645635286249782" />
+      <entry key="M5" value="3.854042611903882" />
+      <entry key="M10" value="3.926299983866689" />
+      <entry key="M15" value="3.9507048915773524" />
+      <entry key="M30" value="3.9752711927375595" />
+      <entry key="H1" value="3.987615213258112" />
+      <entry key="H2" value="3.9938025020934256" />
+      <entry key="H4" value="3.99689997381637" />
+      <entry key="D1" value="3.9994831514831515" />
+      <entry key="W1" value="3.9999261601497764" />
+    </decayedCancelled>
+    <decayedSelected>
+      <entry key="MS100" value="1.0" />
+      <entry key="MS500" value="1.0" />
+      <entry key="S2" value="1.0" />
+      <entry key="S5" value="1.0" />
+      <entry key="S10" value="1.0" />
+      <entry key="S30" value="1.0" />
+      <entry key="S60" value="1.0" />
+      <entry key="M2" value="1.0" />
+      <entry key="M5" value="1.0" />
+      <entry key="M10" value="1.0" />
+      <entry key="M15" value="1.0" />
+      <entry key="M30" value="1.0" />
+      <entry key="H1" value="1.0" />
+      <entry key="H2" value="1.0" />
+      <entry key="H4" value="1.0" />
+      <entry key="D1" value="1.0" />
+      <entry key="W1" value="1.0" />
+    </decayedSelected>
+    <decayedShown>
+      <entry key="MS100" value="3.1562300684567236E-25" />
+      <entry key="MS500" value="1.2586185607796484E-5" />
+      <entry key="S2" value="0.06946642328421065" />
+      <entry key="S5" value="0.6566783869292465" />
+      <entry key="S10" value="1.7082595622639072" />
+      <entry key="S30" value="3.453429791945963" />
+      <entry key="S60" value="4.149504558533277" />
+      <entry key="M2" value="4.553371632330094" />
+      <entry key="M5" value="4.8159247496174755" />
+      <entry key="M10" value="4.907032811233892" />
+      <entry key="M15" value="4.937813365088434" />
+      <entry key="M30" value="4.968801938788556" />
+      <entry key="H1" value="4.984374691312712" />
+      <entry key="H2" value="4.9921807645818035" />
+      <entry key="H4" value="4.996088735575716" />
+      <entry key="D1" value="4.999347893762626" />
+      <entry key="W1" value="4.999906836360406" />
+    </decayedShown>
   </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/bin/php">
     <include_path>
@@ -170,34 +258,34 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/var/www/v3.api.aftaa.ru",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/var/www/v3.api.aftaa.ru&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
@@ -206,7 +294,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-php-predefined-a98d8de5180a-9522f28f0b20-com.jetbrains.php.sharedIndexes-PS-262.10968.76" />
+        <option value="bundled-php-predefined-a98d8de5180a-ec844a175cc0-com.jetbrains.php.sharedIndexes-PS-263.7307.215" />
       </set>
     </attachedChunks>
   </component>
@@ -249,6 +337,15 @@
       <workItem from="1764753739439" duration="30000" />
       <workItem from="1764767353700" duration="5000" />
       <workItem from="1792896774902" duration="1396000" />
+      <workItem from="1794848656469" duration="2876000" />
+      <workItem from="1794861784452" duration="849000" />
+      <workItem from="1794862647816" duration="43000" />
+      <workItem from="1794862702439" duration="390000" />
+      <workItem from="1794863237718" duration="4000" />
+      <workItem from="1794863313307" duration="136000" />
+      <workItem from="1794863462130" duration="2788000" />
+      <workItem from="1794880358697" duration="681000" />
+      <workItem from="1794881178431" duration="802000" />
     </task>
     <servers />
   </component>
