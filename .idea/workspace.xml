@@ -10,7 +10,6 @@
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/v3.api.aftaa.ru.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/api.aftaa.ru.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/packages/security.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/security.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/BlockController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/BlockController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/LinkController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/LinkController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Entity/Block.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Block.php" afterDir="false" />
@@ -355,7 +354,7 @@
       <workItem from="1794911380960" duration="617000" />
       <workItem from="1794921007354" duration="295000" />
       <workItem from="1794937429263" duration="37000" />
-      <workItem from="1794937502070" duration="8806000" />
+      <workItem from="1794937502070" duration="9689000" />
     </task>
     <servers />
   </component>
