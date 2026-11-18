@@ -32,6 +32,7 @@ class LinkController extends AbstractController
     )
     {
         $this->context = (new ObjectNormalizerContextBuilder())->withGroups('api')->toArray();
+
     }
 
     #[Route('/private/link/{id}', methods: ['GET'])]
@@ -40,7 +41,8 @@ class LinkController extends AbstractController
     #[OA\Response(response: Response::HTTP_NOT_FOUND, description: 'Ссылка не найдена')]
     public function get(Link $link): JsonResponse
     {
-        return $this->json($this->serializer->normalize($link, null, $this->context));
+
+        return $this->json($link, 200, [], $this->context);
     }
 
     #[Route('/private/link/{id}', methods: ['PUT'])]
